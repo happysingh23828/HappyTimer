@@ -8,5 +8,9 @@
     <string name="label_hour">h</string>
     <string name="label_minutes">m</string>
     <string name="label_second">s</string>
+    <string name="separator">:</string>
     <string name="placeholder_time">00</string>
+
+    <!-- Default NormalCountdown values   -->
+    <string name="default_separator_dynamic">@string/separator</string>
 </resources>

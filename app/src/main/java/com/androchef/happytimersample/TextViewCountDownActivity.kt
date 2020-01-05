@@ -19,19 +19,19 @@ class TextViewCountDownActivity : AppCompatActivity() {
 
     private fun onClicks() {
         btnStart.setOnClickListener {
-            normalCountDownTimer.startTimer()
+            dynamicCountDownTimer.startTimer()
         }
 
         btnStop.setOnClickListener {
-            normalCountDownTimer.stopTimer()
+            dynamicCountDownTimer.stopTimer()
         }
 
         btnPause.setOnClickListener {
-            normalCountDownTimer.pauseTimer()
+            dynamicCountDownTimer.pauseTimer()
         }
 
         btnResume.setOnClickListener {
-            normalCountDownTimer.resumeTimer()
+            dynamicCountDownTimer.resumeTimer()
         }
 
         btnSetTime.setOnClickListener {
@@ -52,9 +52,9 @@ class TextViewCountDownActivity : AppCompatActivity() {
     }
 
     private fun initTimerConfiguration(totalSeconds: Int) {
-        normalCountDownTimer.timerTextIsBold = false
-        normalCountDownTimer.timerTextSize = 18F
-        normalCountDownTimer.timerTextLabelSize = 14F
-        normalCountDownTimer.initTimer(totalSeconds, timerType)
+        dynamicCountDownTimer.timerTextIsBold = false
+        dynamicCountDownTimer.timerTextSize = 18F
+        dynamicCountDownTimer.timerTextLabelSize = 14F
+        dynamicCountDownTimer.initTimer(totalSeconds, timerType)
     }
 }

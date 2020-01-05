@@ -20,5 +20,8 @@ class HomeActivity : AppCompatActivity() {
         btnNormalCountDown.setOnClickListener {
             startActivity(Intent(this, TextViewCountDownActivity::class.java))
         }
+        btnDynamic.setOnClickListener {
+            startActivity(Intent(this, DynamicCountDownActivity::class.java))
+        }
     }
 }

@@ -2,4 +2,7 @@
     <string name="app_name">HappyTimerSample</string>
     <string name="circulartimer">CircularTimer</string>
     <string name="normalcountdowntextview">NormalCountDOwnTextView</string>
+    <string name="dynamic">Dynamic</string>
+    <string name="size">- size</string>
+    <string name="incsize">+ size</string>
 </resources>

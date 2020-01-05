@@ -1,6 +1,7 @@
 package com.androchef.happytimer.utils
 
-import com.androchef.happytimer.countdowntimer.NormalCountDownTextView
+import com.androchef.happytimer.countdowntimer.pojo.NormalCountDownTime
+
 
 object DateTimeUtils {
 
@@ -18,8 +19,8 @@ object DateTimeUtils {
             .padStart(2, '0')}"
     }
 
-    fun getNormalCountDownTime(seconds: Int): NormalCountDownTextView.NormalCountDownTime {
-        return NormalCountDownTextView.NormalCountDownTime(
+    fun getNormalCountDownTime(seconds: Int): NormalCountDownTime {
+        return NormalCountDownTime(
             hour = seconds / 3600,
             minutes = seconds.rem(3600) / 60,
             seconds = seconds % 60

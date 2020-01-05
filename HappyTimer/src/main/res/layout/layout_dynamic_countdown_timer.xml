@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_textview_countdown_rectangle"
+            android:padding="@dimen/paddingSmall"
+            android:text="@string/placeholder_time"
+            android:textSize="@dimen/text_size_xxx_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvMinutesSeparator"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="@dimen/paddingSmall"
+            android:background="@drawable/bg_textview_countdown_rectangle"
+            android:text="@string/placeholder_time"
+            android:textSize="@dimen/text_size_xxx_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvHourSeparator"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMinutesSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:padding="0dp"
+            android:text="@string/separator"
+            android:textSize="@dimen/text_size_x_large"
+            app:layout_constraintBottom_toBottomOf="@+id/tvMinutes"
+            app:layout_constraintStart_toEndOf="@+id/tvMinutes"
+            app:layout_constraintTop_toTopOf="@+id/tvMinutes" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="@dimen/paddingSmall"
+            android:background="@drawable/bg_textview_countdown_rectangle"
+            android:text="@string/placeholder_time"
+            android:textSize="@dimen/text_size_xxx_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHourSeparator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:padding="0dp"
+            android:text="@string/separator"
+            android:textSize="@dimen/text_size_x_large"
+            app:layout_constraintBottom_toBottomOf="@+id/tvHour"
+            app:layout_constraintStart_toEndOf="@+id/tvHour"
+            app:layout_constraintTop_toTopOf="@+id/tvHour" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.androchef.happytimer.countdowntimer.NormalCountDownTextView
+    <com.androchef.happytimer.countdowntimer.DynamicCountDownView
         android:id="@+id/dynamicCountDownTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        app:dynamic_timer_text_color="@color/colorGrey"
+        app:dynamic_timer_text_separator="-"
+        app:dynamic_timer_text_separator_color="@color/colorLightBlue"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:normal_timer_text_color="@color/colorGrey"
-        app:normal_timer_text_label_color="@color/colorLightBlue"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edtTimeInSeconds"
@@ -119,4 +119,25 @@
 
 
     </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnIncSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/incsize"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStop"
+        app:layout_constraintEnd_toStartOf="@+id/btnStop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnStop" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDecSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/size"
+        app:layout_constraintBottom_toBottomOf="@+id/btnStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnStop"
+        app:layout_constraintTop_toTopOf="@+id/btnStop" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

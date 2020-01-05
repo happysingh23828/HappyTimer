@@ -16,6 +16,14 @@
         android:layout_gravity="center"
         />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDynamic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dynamic"
+        android:layout_marginTop="@dimen/marginLarge"
+        android:layout_gravity="center"
+        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNormalCountDown"
