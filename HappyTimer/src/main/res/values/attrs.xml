@@ -2,6 +2,8 @@
 <resources>
 
     <declare-styleable name="CircularCountDownTimer">
+        <attr name="timer_total_seconds" format="integer"/>
+        <attr name="timer_time_elapsed_interval" format="integer"/>
         <attr name="stroke_color" format="color" />
         <attr name="stroke_thickness" format="dimension" />
         <attr name="timer_text_size" format="dimension" />

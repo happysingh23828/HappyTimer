@@ -6,8 +6,10 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.androchef.happytimer.R
+import com.androchef.happytimer.utils.DateTimeUtils
 import kotlinx.android.synthetic.main.layout_circular_count_down_timer.view.*
 
 class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
@@ -48,6 +50,9 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
             invalidate()
         }
 
+    private var timerTotalSeconds: Int = resources.getInteger(R.integer.default_timer_total_seconds)
+
+    private var happyTimer: HappyTimer? = null
 
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_circular_count_down_timer, this)
@@ -81,12 +86,133 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
                 timerTextSize
             )
 
+            timerTotalSeconds =
+                typedArray.getInt(
+                    R.styleable.CircularCountDownTimer_timer_total_seconds,
+                    strokeColor
+                )
+
         } finally {
             typedArray.recycle()
         }
     }
 
+    fun initTimer(totalTimeInSeconds: Int, type: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN) {
+        this.timerTotalSeconds = totalTimeInSeconds
+        stopTimer()
+        resetTimer()
+        happyTimer = HappyTimer(totalTimeInSeconds, type,3000)
+        setOnTickListener()
+        setOnStateChangeListener()
+        onInitTimerState()
+    }
 
+    fun startTimer() {
+        happyTimer?.start()
+    }
+
+    fun stopTimer() {
+        happyTimer?.stop()
+    }
+
+    fun pauseTimer() {
+        happyTimer?.pause()
+    }
+
+    fun resumeTimer() {
+        happyTimer?.resume()
+    }
+
+    fun resetTimer() {
+        happyTimer?.resetTimer()
+    }
+
+    private fun setOnTickListener() {
+        happyTimer?.setOnTickListener(object : HappyTimer.OnTickListener {
+            override fun onTick(completedSeconds: Int, remainingSeconds: Int) {
+                tvTimerText.text = DateTimeUtils.getMinutesSecondsFormat(remainingSeconds)
+                circleProgressBar.setProgressWithAnimation(remainingSeconds.toFloat())
+            }
+
+            override fun onTimeUp() {
+                onTimeUpState()
+            }
+        })
+    }
+
+    private fun setOnStateChangeListener() {
+        happyTimer?.setOnStateChangeListener(object : HappyTimer.OnStateChangeListener {
+            override fun onStateChange(
+                state: HappyTimer.State,
+                completedSeconds: Int,
+                remainingSeconds: Int
+            ) {
+                when (state) {
+                    HappyTimer.State.RUNNING -> {
+                        onRunningState()
+                    }
+                    HappyTimer.State.FINISHED -> {
+                        onFinishedState()
+                    }
+                    HappyTimer.State.PAUSED -> {
+                        onPausedState()
+                    }
+                    HappyTimer.State.RESUMED -> {
+                        onResumedState()
+                    }
+                    HappyTimer.State.UNKNOWN -> {
+                        onUnknownState()
+                    }
+                    HappyTimer.State.RESET -> {
+                        onResetState()
+                    }
+                    HappyTimer.State.STOPPED -> {
+                        onStopState()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun onStopState() {
+
+    }
+
+    private fun onResetState() {
+
+    }
+
+    private fun onUnknownState() {
+
+    }
+
+    private fun onResumedState() {
+
+    }
+
+    private fun onPausedState() {
+
+    }
+
+    private fun onFinishedState() {
+
+    }
+
+    private fun onRunningState() {
+
+    }
+
+    private fun onInitTimerState() {
+        tvTimerText.text = DateTimeUtils.getMinutesSecondsFormat(timerTotalSeconds)
+        circleProgressBar.setMin(0)
+        circleProgressBar.setMax(timerTotalSeconds)
+        circleProgressBar.setProgressWithAnimation(timerTotalSeconds.toFloat())
+        circleProgressBar.invalidate()
+    }
+
+    private fun onTimeUpState() {
+
+    }
 
 
     //region Extensions Utils

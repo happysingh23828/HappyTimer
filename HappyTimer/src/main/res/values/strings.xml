@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HappyTimer</string>
+
+    <!-- CircularCountDownTimer Strings -->
+    <string name="countdown_timer_text_h_m_s">%1$d : %2$d : %3$d</string>
+    <string name="countdown_timer_text_m_s">%1$d : %2$d</string>
+    <string name="countdown_timer_text_s">%1$d</string>
 </resources>

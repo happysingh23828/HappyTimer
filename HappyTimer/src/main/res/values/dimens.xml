@@ -33,6 +33,7 @@
     <dimen name="default_stroke_thickness">3dp</dimen>
     <dimen name="default_timer_text_size">@dimen/text_size_default</dimen>
     <bool name="default_timer_text_is_bold">false</bool>
+    <integer name="default_timer_total_seconds">10</integer>
 
 
 </resources>
