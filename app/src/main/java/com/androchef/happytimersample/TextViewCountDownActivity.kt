@@ -12,6 +12,7 @@ class TextViewCountDownActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text_view_count_down)
+        initTimerConfiguration(30)
         onClicks()
     }
 
@@ -51,8 +52,9 @@ class TextViewCountDownActivity : AppCompatActivity() {
     }
 
     private fun initTimerConfiguration(totalSeconds: Int) {
-        normalCountDownTimer.timerTextIsBold = true
-        normalCountDownTimer.timerTextSize = 12F
+        normalCountDownTimer.timerTextIsBold = false
+        normalCountDownTimer.timerTextSize = 18F
+        normalCountDownTimer.timerTextLabelSize = 14F
         normalCountDownTimer.initTimer(totalSeconds, timerType)
     }
 }
