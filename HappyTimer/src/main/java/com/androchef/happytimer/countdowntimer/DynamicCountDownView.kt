@@ -174,11 +174,6 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
                 timerTextSeparatorIsBold
             )
 
-            timerTextBackgroundTintColor = typedArray.getColor(
-                R.styleable.DynamicCountDownView_dynamic_timer_text_background_tint,
-                timerTextBackgroundTintColor
-            )
-
             separatorString =
                 typedArray.getString(R.styleable.DynamicCountDownView_dynamic_timer_text_separator)
                     ?: separatorString

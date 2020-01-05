@@ -40,7 +40,6 @@
         <attr name="dynamic_timer_separator_text_size" format="dimension" />
         <attr name="dynamic_timer_text_color" format="color" />
         <attr name="dynamic_timer_text_separator_color" format="color" />
-        <attr name="dynamic_timer_text_background_tint" format="color" />
         <attr name="dynamic_timer_text_separator" format="string" />
         <attr name="dynamic_timer_text_isBold" format="boolean" />
         <attr name="dynamic_timer_text__separator_isBold" format="boolean" />
