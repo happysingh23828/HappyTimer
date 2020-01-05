@@ -18,7 +18,9 @@ class CircleProgressBar(
      * ProgressBar's line thickness
      */
 
-    private var strokeWidth = 4f
+    private var strokeWidthForGroundProgress = 4f
+
+    private var strokeWidthBackgroundProgress = 4f
 
     private var progress = 0f
 
@@ -26,7 +28,9 @@ class CircleProgressBar(
 
     private var max = 100
 
-    private var color = Color.DKGRAY
+    private var colorForGroundProgress = Color.DKGRAY
+
+    private var colorBackgroundProgress: Int? = null
 
     private var rectF: RectF? = null
 
@@ -34,14 +38,11 @@ class CircleProgressBar(
 
     private var foregroundPaint: Paint? = null
 
-    fun getStrokeWidth(): Float {
-        return strokeWidth
-    }
-
-    fun setStrokeWidth(strokeWidth: Float) {
-        this.strokeWidth = strokeWidth
-        backgroundPaint!!.strokeWidth = strokeWidth
-        foregroundPaint!!.strokeWidth = strokeWidth
+    fun setStrokeWidth(strokeWidthForeground: Float, strokeWidthBackground: Float? = null) {
+        this.strokeWidthForGroundProgress = strokeWidthForeground
+        this.strokeWidthBackgroundProgress = strokeWidthBackground ?: strokeWidthForeground
+        backgroundPaint!!.strokeWidth = strokeWidthBackground ?: strokeWidthForeground
+        foregroundPaint!!.strokeWidth = strokeWidthForeground
         invalidate()
         requestLayout() //Because it should recalculate its bounds
     }
@@ -55,17 +56,9 @@ class CircleProgressBar(
         invalidate()
     }
 
-    fun getMin(): Int {
-        return min
-    }
-
     fun setMin(min: Int) {
         this.min = min
         invalidate()
-    }
-
-    fun getMax(): Int {
-        return max
     }
 
     fun setMax(max: Int) {
@@ -73,14 +66,11 @@ class CircleProgressBar(
         invalidate()
     }
 
-    fun getColor(): Int {
-        return color
-    }
-
-    fun setColor(color: Int) {
-        this.color = color
-        backgroundPaint!!.color = adjustAlpha(color, 0.3f)
-        foregroundPaint!!.color = color
+    fun setColor(colorForeground: Int, colorBackGround: Int? = null) {
+        this.colorForGroundProgress = colorForeground
+        this.colorBackgroundProgress = colorBackGround
+        backgroundPaint!!.color = colorBackGround ?: adjustAlpha(colorForeground, 0.3f)
+        foregroundPaint!!.color = colorForeground
         invalidate()
         requestLayout()
     }
@@ -91,13 +81,13 @@ class CircleProgressBar(
     ) {
         rectF = RectF()
         backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        backgroundPaint!!.color = adjustAlpha(color, 0.3f)
+        backgroundPaint!!.color = colorBackgroundProgress ?: adjustAlpha(colorForGroundProgress, 0.3f)
         backgroundPaint!!.style = Paint.Style.STROKE
-        backgroundPaint!!.strokeWidth = strokeWidth
+        backgroundPaint!!.strokeWidth = strokeWidthBackgroundProgress
         foregroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        foregroundPaint!!.color = color
+        foregroundPaint!!.color = colorForGroundProgress
         foregroundPaint!!.style = Paint.Style.STROKE
-        foregroundPaint!!.strokeWidth = strokeWidth
+        foregroundPaint!!.strokeWidth = strokeWidthForGroundProgress
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -118,8 +108,8 @@ class CircleProgressBar(
             getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
         val min = Math.min(width, height)
         setMeasuredDimension(min, min)
-        rectF!![0 + strokeWidth / 2, 0 + strokeWidth / 2, min - strokeWidth / 2] =
-            min - strokeWidth / 2
+        rectF!![0 + strokeWidthForGroundProgress / 2, 0 + strokeWidthForGroundProgress / 2, min - strokeWidthForGroundProgress / 2] =
+            min - strokeWidthForGroundProgress / 2
     }
 
     /**

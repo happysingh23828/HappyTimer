@@ -14,9 +14,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:stroke_color="@color/colorLightBlue"
-        app:stroke_thickness="4dp"
-        app:timer_text_color="@color/colorLightBlue"
+        app:stroke_background_thickness="4dp"
+        app:stroke_foreground_thickness="4dp"
+        app:stroke_foreground_color="@color/colorLightBlue"
+        app:stroke_background_color="@color/colorGrey"
         app:timer_text_isBold="true"
         app:timer_text_size="@dimen/text_size_x_large"
         />

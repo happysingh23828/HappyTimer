@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.androchef.happytimer.R
 import com.androchef.happytimer.utils.DateTimeUtils
@@ -15,17 +14,31 @@ import kotlinx.android.synthetic.main.layout_circular_count_down_timer.view.*
 class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
     ConstraintLayout(context, attributeSet) {
 
-    var strokeThickness: Float = resources.getDimension(R.dimen.default_stroke_thickness)
+    var strokeThicknessForeground: Float = resources.getDimension(R.dimen.default_stroke_thickness)
         set(value) {
             field = value.dpToPx()
-            circleProgressBar.setStrokeWidth(field)
+            circleProgressBar.setStrokeWidth(field,strokeThicknessBackground)
             invalidate()
         }
 
-    var strokeColor: Int = Color.BLACK
+    var strokeThicknessBackground: Float = resources.getDimension(R.dimen.default_stroke_thickness)
+        set(value) {
+            field = value.dpToPx()
+            circleProgressBar.setStrokeWidth(strokeThicknessForeground,field)
+            invalidate()
+        }
+
+    var strokeColorForeground: Int = Color.GRAY
         set(value) {
             field = value
-            circleProgressBar.setColor(field)
+            circleProgressBar.setColor(field,strokeColorBackground)
+            invalidate()
+        }
+
+    var strokeColorBackground: Int = strokeColorForeground
+        set(value) {
+            field = value
+            circleProgressBar.setColor(strokeColorForeground,field)
             invalidate()
         }
 
@@ -63,13 +76,25 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
         )
         //Reading values from the XML layout
         try {
-            strokeThickness = typedArray.getDimension(
-                R.styleable.CircularCountDownTimer_stroke_thickness,
-                strokeThickness
+            strokeColorForeground = typedArray.getColor(
+                R.styleable.CircularCountDownTimer_stroke_foreground_color,
+                strokeColorForeground
             )
 
-            strokeColor =
-                typedArray.getInt(R.styleable.CircularCountDownTimer_stroke_color, strokeColor)
+            strokeColorBackground = typedArray.getColor(
+                R.styleable.CircularCountDownTimer_stroke_background_color,
+                strokeColorBackground
+            )
+
+            strokeThicknessForeground = typedArray.getDimension(
+                R.styleable.CircularCountDownTimer_stroke_foreground_thickness,
+                strokeThicknessForeground
+            )
+
+            strokeThicknessBackground = typedArray.getDimension(
+                R.styleable.CircularCountDownTimer_stroke_background_thickness,
+                strokeThicknessBackground
+            )
 
             timerTextColor = typedArray.getColor(
                 R.styleable.CircularCountDownTimer_timer_text_color,
@@ -89,7 +114,7 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
             timerTotalSeconds =
                 typedArray.getInt(
                     R.styleable.CircularCountDownTimer_timer_total_seconds,
-                    strokeColor
+                    timerTotalSeconds
                 )
 
         } finally {
@@ -101,7 +126,7 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
         this.timerTotalSeconds = totalTimeInSeconds
         stopTimer()
         resetTimer()
-        happyTimer = HappyTimer(totalTimeInSeconds, type,3000)
+        happyTimer = HappyTimer(totalTimeInSeconds, type, 3000)
         setOnTickListener()
         setOnStateChangeListener()
         onInitTimerState()
