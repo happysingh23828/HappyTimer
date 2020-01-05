@@ -2,7 +2,7 @@ package com.androchef.happytimer.countdowntimer
 
 import android.os.CountDownTimer
 
-class HappyTimer(seconds: Int, private val timerType: Type, timeElapsedIntervalInSeconds: Int = 0) {
+class HappyTimer(seconds: Int,timeElapsedIntervalInSeconds: Int = 0) {
 
     private var totalSecondsInMills = DEFAULT_MILL_SECONDS
 
@@ -65,23 +65,10 @@ class HappyTimer(seconds: Int, private val timerType: Type, timeElapsedIntervalI
         val millis = seconds * 1000L
         remainingSecondsInMillis = millis
         currentCompletedSecondsInMillis = totalSecondsInMills.minus(millis)
-        when (timerType) {
-
-            Type.COUNT_DOWN -> {
-                onTickListener?.onTick(
-                    currentCompletedSecondsInMillis.div(COUNT_DOWN_INTERVAL).toInt()
-                    , remainingSecondsInMillis.div(COUNT_DOWN_INTERVAL).toInt()
-                )
-            }
-
-            Type.COUNT_UP -> {
-                onTickListener?.onTick(
-                    currentCompletedSecondsInMillis.div(COUNT_DOWN_INTERVAL).toInt()
-                    , remainingSecondsInMillis.div(COUNT_DOWN_INTERVAL).toInt()
-                )
-            }
-
-        }
+        onTickListener?.onTick(
+            currentCompletedSecondsInMillis.div(COUNT_DOWN_INTERVAL).toInt()
+            , remainingSecondsInMillis.div(COUNT_DOWN_INTERVAL).toInt()
+        )
     }
 
     private fun onStateChange(state: State) {
@@ -114,18 +101,8 @@ class HappyTimer(seconds: Int, private val timerType: Type, timeElapsedIntervalI
     fun pause() {
         if (timerState == State.RUNNING || timerState == State.RESUMED) {
             countDownTimer?.cancel()
-
             //Creating new Timer
-            when (timerType) {
-
-                Type.COUNT_UP -> {
-                    initializeWithNewTime(remainingSecondsInMillis)
-                }
-
-                Type.COUNT_DOWN -> {
-                    initializeWithNewTime(remainingSecondsInMillis)
-                }
-            }
+            initializeWithNewTime(remainingSecondsInMillis)
             timerState = State.PAUSED
         }
     }

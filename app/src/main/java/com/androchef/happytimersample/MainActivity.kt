@@ -7,6 +7,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private var timerType : HappyTimer.Type = HappyTimer.Type.COUNT_DOWN
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,11 +36,23 @@ class MainActivity : AppCompatActivity() {
         btnSetTime.setOnClickListener {
             initTimerConfiguration(edtTimeInSeconds.text?.toString()?.toInt() ?: 30)
         }
+
+        rdCountDown.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                timerType = HappyTimer.Type.COUNT_DOWN
+            }
+        }
+
+        rdCountUp.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                timerType = HappyTimer.Type.COUNT_UP
+            }
+        }
     }
 
     private fun initTimerConfiguration(totalSeconds: Int) {
         countDownTimer.timerTextIsBold = true
         countDownTimer.timerTextSize = 12F
-        countDownTimer.initTimer(totalSeconds, HappyTimer.Type.COUNT_DOWN)
+        countDownTimer.initTimer(totalSeconds, timerType)
     }
 }

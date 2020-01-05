@@ -2,8 +2,8 @@
 <resources>
 
     <declare-styleable name="CircularCountDownTimer">
-        <attr name="timer_total_seconds" format="integer"/>
-        <attr name="timer_time_elapsed_interval" format="integer"/>
+        <attr name="timer_total_seconds" format="integer" />
+        <attr name="timer_time_elapsed_interval" format="integer" />
         <attr name="stroke_foreground_color" format="color" />
         <attr name="stroke_background_color" format="color" />
         <attr name="stroke_foreground_thickness" format="dimension" />
@@ -11,6 +11,15 @@
         <attr name="timer_text_size" format="dimension" />
         <attr name="timer_text_color" format="color" />
         <attr name="timer_text_isBold" format="boolean" />
+        <attr name="timer_type" format="enum">
+            <enum name="COUNT_UP" value="0" />
+            <enum name="COUNT_DOWN" value="1" />
+        </attr>
+        <attr name="timer_text_format" format="enum">
+            <enum name="HOUR_MINUTE_SECOND" value="0"/>
+            <enum name="MINUTE_SECOND" value="1" />
+            <enum name="SECOND" value="2" />
+        </attr>
     </declare-styleable>
 
 </resources>

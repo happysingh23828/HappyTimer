@@ -38,6 +38,8 @@ class CircleProgressBar(
 
     private var foregroundPaint: Paint? = null
 
+    private var progressFlow: ProgressFlow = ProgressFlow.RIGHT_LEFT
+
     fun setStrokeWidth(strokeWidthForeground: Float, strokeWidthBackground: Float? = null) {
         this.strokeWidthForGroundProgress = strokeWidthForeground
         this.strokeWidthBackgroundProgress = strokeWidthBackground ?: strokeWidthForeground
@@ -66,6 +68,10 @@ class CircleProgressBar(
         invalidate()
     }
 
+    fun setProgressFlow(progressFlow: ProgressFlow) {
+        this.progressFlow = progressFlow
+    }
+
     fun setColor(colorForeground: Int, colorBackGround: Int? = null) {
         this.colorForGroundProgress = colorForeground
         this.colorBackgroundProgress = colorBackGround
@@ -81,7 +87,8 @@ class CircleProgressBar(
     ) {
         rectF = RectF()
         backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        backgroundPaint!!.color = colorBackgroundProgress ?: adjustAlpha(colorForGroundProgress, 0.3f)
+        backgroundPaint!!.color =
+            colorBackgroundProgress ?: adjustAlpha(colorForGroundProgress, 0.3f)
         backgroundPaint!!.style = Paint.Style.STROKE
         backgroundPaint!!.strokeWidth = strokeWidthBackgroundProgress
         foregroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -93,7 +100,7 @@ class CircleProgressBar(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawOval(rectF!!, backgroundPaint!!)
-        val angle = 360 * progress / max
+        val angle = getAngleForProgressFlow()
         /**
          * Start the progress at 12 o'clock
          */
@@ -108,8 +115,9 @@ class CircleProgressBar(
             getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
         val min = Math.min(width, height)
         setMeasuredDimension(min, min)
-        rectF!![0 + strokeWidthForGroundProgress / 2, 0 + strokeWidthForGroundProgress / 2, min - strokeWidthForGroundProgress / 2] =
-            min - strokeWidthForGroundProgress / 2
+        val hightStrokeWidth = if(strokeWidthBackgroundProgress < strokeWidthForGroundProgress) strokeWidthBackgroundProgress else strokeWidthForGroundProgress
+        rectF!![0 + hightStrokeWidth / 2, 0 + hightStrokeWidth / 2, min - hightStrokeWidth / 2] =
+            min - hightStrokeWidth / 2
     }
 
     /**
@@ -160,7 +168,18 @@ class CircleProgressBar(
         objectAnimator.start()
     }
 
+    private fun getAngleForProgressFlow(): Float {
+        return when (progressFlow) {
+            ProgressFlow.LEFT_RIGHT -> 360 * progress / max
+            ProgressFlow.RIGHT_LEFT -> 360 * progress / max
+        }
+    }
+
     init {
         init(context, attrs)
+    }
+
+    enum class ProgressFlow {
+        LEFT_RIGHT, RIGHT_LEFT
     }
 }

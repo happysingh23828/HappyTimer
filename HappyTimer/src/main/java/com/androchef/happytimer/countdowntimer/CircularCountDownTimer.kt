@@ -17,28 +17,28 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
     var strokeThicknessForeground: Float = resources.getDimension(R.dimen.default_stroke_thickness)
         set(value) {
             field = value.dpToPx()
-            circleProgressBar.setStrokeWidth(field,strokeThicknessBackground)
+            circleProgressBar.setStrokeWidth(field, strokeThicknessBackground)
             invalidate()
         }
 
     var strokeThicknessBackground: Float = resources.getDimension(R.dimen.default_stroke_thickness)
         set(value) {
             field = value.dpToPx()
-            circleProgressBar.setStrokeWidth(strokeThicknessForeground,field)
+            circleProgressBar.setStrokeWidth(strokeThicknessForeground, field)
             invalidate()
         }
 
     var strokeColorForeground: Int = Color.GRAY
         set(value) {
             field = value
-            circleProgressBar.setColor(field,strokeColorBackground)
+            circleProgressBar.setColor(field, strokeColorBackground)
             invalidate()
         }
 
     var strokeColorBackground: Int = strokeColorForeground
         set(value) {
             field = value
-            circleProgressBar.setColor(strokeColorForeground,field)
+            circleProgressBar.setColor(strokeColorForeground, field)
             invalidate()
         }
 
@@ -62,6 +62,10 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
             tvTimerText.setTextAppearance(context, Typeface.BOLD)
             invalidate()
         }
+
+    var timerTextFormat: TextFormat = TextFormat.MINUTE_SECOND
+
+    var timerType: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN
 
     private var timerTotalSeconds: Int = resources.getInteger(R.integer.default_timer_total_seconds)
 
@@ -116,6 +120,17 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
                     R.styleable.CircularCountDownTimer_timer_total_seconds,
                     timerTotalSeconds
                 )
+            timerTextFormat = TextFormat.values()[
+                    typedArray.getInt(
+                        R.styleable.CircularCountDownTimer_timer_text_format,
+                        0
+                    )]
+
+            timerType = HappyTimer.Type.values()[
+                    typedArray.getInt(
+                        R.styleable.CircularCountDownTimer_timer_type,
+                        0
+                    )]
 
         } finally {
             typedArray.recycle()
@@ -124,9 +139,10 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
 
     fun initTimer(totalTimeInSeconds: Int, type: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN) {
         this.timerTotalSeconds = totalTimeInSeconds
+        this.timerType = type
         stopTimer()
         resetTimer()
-        happyTimer = HappyTimer(totalTimeInSeconds, type, 3000)
+        happyTimer = HappyTimer(totalTimeInSeconds, 3000)
         setOnTickListener()
         setOnStateChangeListener()
         onInitTimerState()
@@ -155,7 +171,7 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
     private fun setOnTickListener() {
         happyTimer?.setOnTickListener(object : HappyTimer.OnTickListener {
             override fun onTick(completedSeconds: Int, remainingSeconds: Int) {
-                tvTimerText.text = DateTimeUtils.getMinutesSecondsFormat(remainingSeconds)
+                setTimerText(completedSeconds, remainingSeconds)
                 circleProgressBar.setProgressWithAnimation(remainingSeconds.toFloat())
             }
 
@@ -163,6 +179,13 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
                 onTimeUpState()
             }
         })
+    }
+
+    private fun setTimerText(completedSeconds: Int, remainingSeconds: Int) {
+       tvTimerText.text =  when (timerType) {
+            HappyTimer.Type.COUNT_UP -> getFormattedTime(completedSeconds)
+            HappyTimer.Type.COUNT_DOWN -> getFormattedTime(remainingSeconds)
+        }
     }
 
     private fun setOnStateChangeListener() {
@@ -227,18 +250,36 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
 
     }
 
+    private fun onTimeUpState() {
+
+    }
+
     private fun onInitTimerState() {
-        tvTimerText.text = DateTimeUtils.getMinutesSecondsFormat(timerTotalSeconds)
+        setTimerTextInitial()
         circleProgressBar.setMin(0)
         circleProgressBar.setMax(timerTotalSeconds)
         circleProgressBar.setProgressWithAnimation(timerTotalSeconds.toFloat())
         circleProgressBar.invalidate()
     }
 
-    private fun onTimeUpState() {
-
+    private fun setTimerTextInitial() {
+        tvTimerText.text =  when (timerType) {
+            HappyTimer.Type.COUNT_UP -> getFormattedTime(0)
+            HappyTimer.Type.COUNT_DOWN -> getFormattedTime(timerTotalSeconds)
+        }
     }
 
+    private fun getFormattedTime(seconds: Int): String {
+        return when (timerTextFormat) {
+            TextFormat.HOUR_MINUTE_SECOND -> DateTimeUtils.getHourMinutesSecondsFormat(seconds)
+            TextFormat.MINUTE_SECOND -> DateTimeUtils.getMinutesSecondsFormat(seconds)
+            TextFormat.SECOND -> seconds.toString()
+        }
+    }
+
+    enum class TextFormat {
+        HOUR_MINUTE_SECOND, MINUTE_SECOND, SECOND
+    }
 
     //region Extensions Utils
     private fun Float.dpToPx(): Float =
