@@ -35,5 +35,8 @@
     <bool name="default_timer_text_is_bold">false</bool>
     <integer name="default_timer_total_seconds">10</integer>
 
+    <!-- Default NormalCountdown values   -->
+    <dimen name="default_normal_timer_text_size">@dimen/text_size_xx_large</dimen>
+    <dimen name="default_normal_timer_text_label_size">@dimen/text_size_small</dimen>
 
 </resources>

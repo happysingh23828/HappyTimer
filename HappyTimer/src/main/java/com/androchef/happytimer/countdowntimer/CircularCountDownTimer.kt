@@ -144,7 +144,6 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
         resetTimer()
         happyTimer = HappyTimer(totalTimeInSeconds, 3000)
         setOnTickListener()
-        setOnStateChangeListener()
         onInitTimerState()
     }
 
@@ -176,7 +175,7 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
             }
 
             override fun onTimeUp() {
-                onTimeUpState()
+
             }
         })
     }
@@ -186,72 +185,6 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
             HappyTimer.Type.COUNT_UP -> getFormattedTime(completedSeconds)
             HappyTimer.Type.COUNT_DOWN -> getFormattedTime(remainingSeconds)
         }
-    }
-
-    private fun setOnStateChangeListener() {
-        happyTimer?.setOnStateChangeListener(object : HappyTimer.OnStateChangeListener {
-            override fun onStateChange(
-                state: HappyTimer.State,
-                completedSeconds: Int,
-                remainingSeconds: Int
-            ) {
-                when (state) {
-                    HappyTimer.State.RUNNING -> {
-                        onRunningState()
-                    }
-                    HappyTimer.State.FINISHED -> {
-                        onFinishedState()
-                    }
-                    HappyTimer.State.PAUSED -> {
-                        onPausedState()
-                    }
-                    HappyTimer.State.RESUMED -> {
-                        onResumedState()
-                    }
-                    HappyTimer.State.UNKNOWN -> {
-                        onUnknownState()
-                    }
-                    HappyTimer.State.RESET -> {
-                        onResetState()
-                    }
-                    HappyTimer.State.STOPPED -> {
-                        onStopState()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun onStopState() {
-
-    }
-
-    private fun onResetState() {
-
-    }
-
-    private fun onUnknownState() {
-
-    }
-
-    private fun onResumedState() {
-
-    }
-
-    private fun onPausedState() {
-
-    }
-
-    private fun onFinishedState() {
-
-    }
-
-    private fun onRunningState() {
-
-    }
-
-    private fun onTimeUpState() {
-
     }
 
     private fun onInitTimerState() {

@@ -22,4 +22,16 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="NormalCountDownTextView">
+        <attr name="normal_timer_text_size" format="dimension" />
+        <attr name="normal_timer_label_text_size" format="dimension" />
+        <attr name="normal_timer_text_color" format="color" />
+        <attr name="normal_timer_text_label_color" format="color" />
+        <attr name="normal_timer_text_isBold" format="boolean" />
+        <attr name="normal_timer_text__label_isBold" format="boolean" />
+        <attr name="show_labels" format="boolean"/>
+        <attr name="show_hour" format="boolean"/>
+        <attr name="show_minutes" format="boolean"/>
+        <attr name="show_seconds" format="boolean"/>
+    </declare-styleable>
 </resources>

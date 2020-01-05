@@ -5,4 +5,8 @@
     <string name="countdown_timer_text_h_m_s">%1$d : %2$d : %3$d</string>
     <string name="countdown_timer_text_m_s">%1$d : %2$d</string>
     <string name="countdown_timer_text_s">%1$d</string>
+    <string name="label_hour">h</string>
+    <string name="label_minutes">m</string>
+    <string name="label_second">s</string>
+    <string name="placeholder_time">00</string>
 </resources>

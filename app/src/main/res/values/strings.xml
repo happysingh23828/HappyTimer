@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HappyTimerSample</string>
+    <string name="circulartimer">CircularTimer</string>
+    <string name="normalcountdowntextview">NormalCountDOwnTextView</string>
 </resources>
