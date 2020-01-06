@@ -71,6 +71,8 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
 
     private var happyTimer: HappyTimer? = null
 
+    private var onTickListener: HappyTimer.OnTickListener? = null
+
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_circular_count_down_timer, this)
         val typedArray = context.theme.obtainStyledAttributes(
@@ -141,7 +143,6 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
         this.timerTotalSeconds = totalTimeInSeconds
         this.timerType = type
         stopTimer()
-        resetTimer()
         happyTimer = HappyTimer(totalTimeInSeconds, 3000)
         setOnTickListener()
         onInitTimerState()
@@ -170,18 +171,19 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
     private fun setOnTickListener() {
         happyTimer?.setOnTickListener(object : HappyTimer.OnTickListener {
             override fun onTick(completedSeconds: Int, remainingSeconds: Int) {
+                onTickListener?.onTick(completedSeconds ,remainingSeconds)
                 setTimerText(completedSeconds, remainingSeconds)
                 circleProgressBar.setProgressWithAnimation(remainingSeconds.toFloat())
             }
 
             override fun onTimeUp() {
-
+                onTickListener?.onTimeUp()
             }
         })
     }
 
     private fun setTimerText(completedSeconds: Int, remainingSeconds: Int) {
-       tvTimerText.text =  when (timerType) {
+        tvTimerText.text = when (timerType) {
             HappyTimer.Type.COUNT_UP -> getFormattedTime(completedSeconds)
             HappyTimer.Type.COUNT_DOWN -> getFormattedTime(remainingSeconds)
         }
@@ -196,7 +198,7 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
     }
 
     private fun setTimerTextInitial() {
-        tvTimerText.text =  when (timerType) {
+        tvTimerText.text = when (timerType) {
             HappyTimer.Type.COUNT_UP -> getFormattedTime(0)
             HappyTimer.Type.COUNT_DOWN -> getFormattedTime(timerTotalSeconds)
         }
@@ -212,6 +214,15 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
 
     enum class TextFormat {
         HOUR_MINUTE_SECOND, MINUTE_SECOND, SECOND
+    }
+
+
+    fun setStateChangeListener(stateChangeListener: HappyTimer.OnStateChangeListener) {
+        happyTimer?.setOnStateChangeListener(stateChangeListener)
+    }
+
+    fun setOnTickListener(onTickListener: HappyTimer.OnTickListener) {
+        this.onTickListener = onTickListener
     }
 
     //region Extensions Utils

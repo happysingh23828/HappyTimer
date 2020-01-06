@@ -106,6 +106,7 @@ class NormalCountDownTextView(context: Context, attributeSet: AttributeSet) :
 
     private var happyTimer: HappyTimer? = null
 
+    private var onTickListener: HappyTimer.OnTickListener? = null
 
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_normal_countdown_timer, this)
@@ -181,7 +182,6 @@ class NormalCountDownTextView(context: Context, attributeSet: AttributeSet) :
         this.timerTotalSeconds = totalTimeInSeconds
         this.timerType = type
         stopTimer()
-        resetTimer()
         happyTimer = HappyTimer(totalTimeInSeconds, 3000)
         setOnTickListener()
         onInitTimerState()
@@ -210,12 +210,12 @@ class NormalCountDownTextView(context: Context, attributeSet: AttributeSet) :
     private fun setOnTickListener() {
         happyTimer?.setOnTickListener(object : HappyTimer.OnTickListener {
             override fun onTick(completedSeconds: Int, remainingSeconds: Int) {
+                onTickListener?.onTick(completedSeconds ,remainingSeconds)
                 setTimerText(completedSeconds, remainingSeconds)
-
             }
 
             override fun onTimeUp() {
-
+                onTickListener?.onTimeUp()
             }
         })
     }
@@ -333,6 +333,14 @@ class NormalCountDownTextView(context: Context, attributeSet: AttributeSet) :
     private fun hideSeconds() {
         tvSeconds.gone()
         tvSecondsLabel.gone()
+    }
+
+    fun setStateChangeListener(stateChangeListener: HappyTimer.OnStateChangeListener) {
+        happyTimer?.setOnStateChangeListener(stateChangeListener)
+    }
+
+    fun setOnTickListener(onTickListener: HappyTimer.OnTickListener) {
+        this.onTickListener = onTickListener
     }
 
     //region Extensions Utils
