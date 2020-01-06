@@ -14,7 +14,7 @@ import com.androchef.happytimer.utils.extensions.gone
 import com.androchef.happytimer.utils.extensions.visible
 import kotlinx.android.synthetic.main.layout_normal_countdown_timer.view.*
 
-class NormalCountDownTextView(context: Context, attributeSet: AttributeSet) :
+class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
     ConstraintLayout(context, attributeSet) {
 
     var timerTextColor: Int = Color.BLACK
@@ -113,28 +113,28 @@ class NormalCountDownTextView(context: Context, attributeSet: AttributeSet) :
 
         val typedArray = context.theme.obtainStyledAttributes(
             attributeSet,
-            R.styleable.NormalCountDownTextView,
+            R.styleable.NormalCountDownView,
             0, 0
         )
         //Reading values from the XML layout
         try {
             timerTextColor = typedArray.getColor(
-                R.styleable.NormalCountDownTextView_normal_timer_text_color,
+                R.styleable.NormalCountDownView_normal_timer_text_color,
                 timerTextColor
             )
 
             timerTextLabelColor = typedArray.getColor(
-                R.styleable.NormalCountDownTextView_normal_timer_text_label_color,
+                R.styleable.NormalCountDownView_normal_timer_text_label_color,
                 timerTextLabelColor
             )
 
             timerTextSize = typedArray.getDimension(
-                R.styleable.NormalCountDownTextView_normal_timer_text_size,
+                R.styleable.NormalCountDownView_normal_timer_text_size,
                 timerTextSize
             )
 
             timerTextLabelSize = typedArray.getDimension(
-                R.styleable.NormalCountDownTextView_normal_timer_label_text_size,
+                R.styleable.NormalCountDownView_normal_timer_label_text_size,
                 timerTextLabelSize
             )
 
@@ -144,31 +144,31 @@ class NormalCountDownTextView(context: Context, attributeSet: AttributeSet) :
             )
 
             timerTextLabelIsBold = typedArray.getBoolean(
-                R.styleable.NormalCountDownTextView_normal_timer_text__label_isBold,
+                R.styleable.NormalCountDownView_normal_timer_text__label_isBold,
                 timerTextLabelIsBold
             )
 
             showLabels =
                 typedArray.getBoolean(
-                    R.styleable.NormalCountDownTextView_show_labels,
+                    R.styleable.NormalCountDownView_show_labels,
                     showLabels
                 )
 
             showHour =
                 typedArray.getBoolean(
-                    R.styleable.NormalCountDownTextView_show_hour,
+                    R.styleable.NormalCountDownView_show_hour,
                     showHour
                 )
 
             showMinutes =
                 typedArray.getBoolean(
-                    R.styleable.NormalCountDownTextView_show_minutes,
+                    R.styleable.NormalCountDownView_show_minutes,
                     showMinutes
                 )
 
             showSeconds =
                 typedArray.getBoolean(
-                    R.styleable.NormalCountDownTextView_show_seconds,
+                    R.styleable.NormalCountDownView_show_seconds,
                     showSeconds
                 )
 

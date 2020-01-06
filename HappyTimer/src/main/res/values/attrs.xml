@@ -22,7 +22,7 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="NormalCountDownTextView">
+    <declare-styleable name="NormalCountDownView">
         <attr name="normal_timer_text_size" format="dimension" />
         <attr name="normal_timer_label_text_size" format="dimension" />
         <attr name="normal_timer_text_color" format="color" />

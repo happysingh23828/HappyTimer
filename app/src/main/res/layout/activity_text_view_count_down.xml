@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.androchef.happytimer.countdowntimer.NormalCountDownTextView
+    <com.androchef.happytimer.countdowntimer.NormalCountDownView
         android:id="@+id/dynamicCountDownTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

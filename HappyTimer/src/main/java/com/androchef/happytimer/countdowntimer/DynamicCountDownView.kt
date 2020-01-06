@@ -140,7 +140,7 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
 
         val typedArray = context.theme.obtainStyledAttributes(
             attributeSet,
-            R.styleable.NormalCountDownTextView,
+            R.styleable.DynamicCountDownView,
             0, 0
         )
         //Reading values from the XML layout
