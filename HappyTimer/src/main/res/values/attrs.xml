@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="CircularCountDownTimer">
+    <declare-styleable name="CircularCountDownView">
         <attr name="timer_total_seconds" format="integer" />
         <attr name="timer_time_elapsed_interval" format="integer" />
         <attr name="stroke_foreground_color" format="color" />

@@ -139,7 +139,7 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
             )
 
             timerTextIsBold = typedArray.getBoolean(
-                R.styleable.CircularCountDownTimer_timer_text_isBold,
+                R.styleable.CircularCountDownView_timer_text_isBold,
                 timerTextIsBold
             )
 

@@ -11,7 +11,7 @@ import com.androchef.happytimer.R
 import com.androchef.happytimer.utils.DateTimeUtils
 import kotlinx.android.synthetic.main.layout_circular_count_down_timer.view.*
 
-class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
+class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
     ConstraintLayout(context, attributeSet) {
 
     var strokeThicknessForeground: Float = resources.getDimension(R.dimen.default_stroke_thickness)
@@ -77,60 +77,60 @@ class CircularCountDownTimer(context: Context, attributeSet: AttributeSet) :
         LayoutInflater.from(context).inflate(R.layout.layout_circular_count_down_timer, this)
         val typedArray = context.theme.obtainStyledAttributes(
             attributeSet,
-            R.styleable.CircularCountDownTimer,
+            R.styleable.CircularCountDownView,
             0, 0
         )
         //Reading values from the XML layout
         try {
             strokeColorForeground = typedArray.getColor(
-                R.styleable.CircularCountDownTimer_stroke_foreground_color,
+                R.styleable.CircularCountDownView_stroke_foreground_color,
                 strokeColorForeground
             )
 
             strokeColorBackground = typedArray.getColor(
-                R.styleable.CircularCountDownTimer_stroke_background_color,
+                R.styleable.CircularCountDownView_stroke_background_color,
                 strokeColorBackground
             )
 
             strokeThicknessForeground = typedArray.getDimension(
-                R.styleable.CircularCountDownTimer_stroke_foreground_thickness,
+                R.styleable.CircularCountDownView_stroke_foreground_thickness,
                 strokeThicknessForeground
             )
 
             strokeThicknessBackground = typedArray.getDimension(
-                R.styleable.CircularCountDownTimer_stroke_background_thickness,
+                R.styleable.CircularCountDownView_stroke_background_thickness,
                 strokeThicknessBackground
             )
 
             timerTextColor = typedArray.getColor(
-                R.styleable.CircularCountDownTimer_timer_text_color,
+                R.styleable.CircularCountDownView_timer_text_color,
                 timerTextColor
             )
 
             timerTextIsBold = typedArray.getBoolean(
-                R.styleable.CircularCountDownTimer_timer_text_isBold,
+                R.styleable.CircularCountDownView_timer_text_isBold,
                 timerTextIsBold
             )
 
             timerTextSize = typedArray.getDimension(
-                R.styleable.CircularCountDownTimer_timer_text_size,
+                R.styleable.CircularCountDownView_timer_text_size,
                 timerTextSize
             )
 
             timerTotalSeconds =
                 typedArray.getInt(
-                    R.styleable.CircularCountDownTimer_timer_total_seconds,
+                    R.styleable.CircularCountDownView_timer_total_seconds,
                     timerTotalSeconds
                 )
             timerTextFormat = TextFormat.values()[
                     typedArray.getInt(
-                        R.styleable.CircularCountDownTimer_timer_text_format,
+                        R.styleable.CircularCountDownView_timer_text_format,
                         0
                     )]
 
             timerType = HappyTimer.Type.values()[
                     typedArray.getInt(
-                        R.styleable.CircularCountDownTimer_timer_type,
+                        R.styleable.CircularCountDownView_timer_type,
                         0
                     )]
 
