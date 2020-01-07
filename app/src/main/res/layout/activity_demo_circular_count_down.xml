@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -23,6 +23,10 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="24dp"
+            app:timer_total_seconds="10"
+            app:timer_text_format="SECOND"
+            app:timer_type="COUNT_DOWN"
+            app:stroke_foreground_color="@color/colorLightBlue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -34,6 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/enter_seconds_to_show"
+            android:inputType="number"
+            android:text="90"
+            android:imeOptions="actionDone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnInitTimer"
             app:layout_constraintHorizontal_bias="0.5"

@@ -30,4 +30,5 @@
     <string name="completed_seconds">Completed Seconds</string>
     <string name="total_seconds">Total Seconds</string>
     <string name="init_timer">Init timer</string>
+    <string name="unknown">UNKNOWN</string>
 </resources>
