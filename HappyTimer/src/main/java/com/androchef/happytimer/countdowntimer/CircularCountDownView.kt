@@ -18,6 +18,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
         set(value) {
             field = value.dpToPx()
             circleProgressBar.setStrokeWidth(field, strokeThicknessBackground)
+            circleProgressBar.invalidate()
             invalidate()
         }
 
@@ -25,6 +26,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
         set(value) {
             field = value.dpToPx()
             circleProgressBar.setStrokeWidth(strokeThicknessForeground, field)
+            circleProgressBar.invalidate()
             invalidate()
         }
 
@@ -32,6 +34,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
         set(value) {
             field = value
             circleProgressBar.setColor(field, strokeColorBackground)
+            circleProgressBar.invalidate()
             invalidate()
         }
 
@@ -39,6 +42,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
         set(value) {
             field = value
             circleProgressBar.setColor(strokeColorForeground, field)
+            circleProgressBar.invalidate()
             invalidate()
         }
 
@@ -46,6 +50,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
         set(value) {
             field = value
             tvTimerText.setTextColor(value)
+            circleProgressBar.invalidate()
             invalidate()
         }
 
@@ -53,25 +58,46 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
         set(value) {
             field = value.dpToPx()
             tvTimerText.textSize = field
+            circleProgressBar.invalidate()
             invalidate()
         }
 
     var timerTextIsBold: Boolean = resources.getBoolean(R.bool.default_timer_text_is_bold)
         set(value) {
             field = value
-            tvTimerText.setTextAppearance(context, Typeface.BOLD)
+            if(value)
+                tvTimerText.setTypeface(null, Typeface.BOLD)
+            else
+                tvTimerText.setTypeface(null, Typeface.NORMAL)
+            circleProgressBar.invalidate()
             invalidate()
         }
 
     var timerTextFormat: TextFormat = TextFormat.MINUTE_SECOND
+        set(value) {
+            field = value
+            setTimerTextInitial()
+            circleProgressBar.invalidate()
+            invalidate()
+        }
 
     var timerType: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN
+        set(value) {
+            field = value
+            setTimerTextInitial()
+            circleProgressBar.invalidate()
+            invalidate()
+        }
 
     private var timerTotalSeconds: Int = resources.getInteger(R.integer.default_timer_total_seconds)
 
-    private var happyTimer: HappyTimer? = null
+    private var happyTimer: HappyTimer? = HappyTimer(timerTotalSeconds)
 
     private var onTickListener: HappyTimer.OnTickListener? = null
+
+    private var onStateChangeListener: HappyTimer.OnStateChangeListener? = null
+
+    fun getTotalSeconds() = timerTotalSeconds
 
     init {
         LayoutInflater.from(context).inflate(R.layout.layout_circular_count_down_timer, this)
@@ -139,9 +165,8 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
         }
     }
 
-    fun initTimer(totalTimeInSeconds: Int, type: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN) {
+    fun initTimer(totalTimeInSeconds: Int) {
         this.timerTotalSeconds = totalTimeInSeconds
-        this.timerType = type
         stopTimer()
         happyTimer = HappyTimer(totalTimeInSeconds, 3000)
         setOnTickListener()
@@ -180,6 +205,10 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
                 onTickListener?.onTimeUp()
             }
         })
+
+        onStateChangeListener?.let {
+            happyTimer?.setOnStateChangeListener(it)
+        }
     }
 
     private fun setTimerText(completedSeconds: Int, remainingSeconds: Int) {
@@ -218,7 +247,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
 
 
     fun setStateChangeListener(stateChangeListener: HappyTimer.OnStateChangeListener) {
-        happyTimer?.setOnStateChangeListener(stateChangeListener)
+        this.onStateChangeListener = stateChangeListener
     }
 
     fun setOnTickListener(onTickListener: HappyTimer.OnTickListener) {
