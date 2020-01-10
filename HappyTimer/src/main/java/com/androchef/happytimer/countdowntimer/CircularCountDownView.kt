@@ -96,7 +96,6 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
     var timerTextFormat: TextFormat = TextFormat.MINUTE_SECOND
         set(value) {
             field = value
-            setTimerTextInitial()
             circleProgressBar.invalidate()
             invalidate()
         }
@@ -104,7 +103,6 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
     var timerType: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN
         set(value) {
             field = value
-            setTimerTextInitial()
             circleProgressBar.invalidate()
             invalidate()
         }
