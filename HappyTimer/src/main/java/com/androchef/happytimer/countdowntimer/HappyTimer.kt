@@ -94,6 +94,7 @@ class HappyTimer(seconds: Int,timeElapsedIntervalInSeconds: Int = 0) {
         if (timerState == State.RESUMED || timerState == State.RUNNING || timerState == State.PAUSED) {
             timerState = State.STOPPED
             countDownTimer?.cancel()
+            countDownTimer?.onFinish()
             currentCompletedSecondsInMillis = 0
             remainingSecondsInMillis = 0
         }

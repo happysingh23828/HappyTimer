@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_circular_count_down_timer.view.*
 class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
     ConstraintLayout(context, attributeSet) {
 
-    var strokeThicknessForeground: Float = resources.getDimension(R.dimen.default_stroke_thickness)
+    var strokeThicknessForeground: Float = 3f.dpToPx()
         set(value) {
             field = value.dpToPx()
             circleProgressBar.setStrokeWidth(field, strokeThicknessBackground)
@@ -22,7 +22,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             invalidate()
         }
 
-    var strokeThicknessBackground: Float = resources.getDimension(R.dimen.default_stroke_thickness)
+    var strokeThicknessBackground: Float = 3f.dpToPx()
         set(value) {
             field = value.dpToPx()
             circleProgressBar.setStrokeWidth(strokeThicknessForeground, field)
@@ -54,9 +54,9 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             invalidate()
         }
 
-    var timerTextSize: Float = resources.getDimension(R.dimen.default_timer_text_size)
+    var timerTextSize: Float = 10f.spToPx()
         set(value) {
-            field = value.dpToPx()
+            field = value.spToPx()
             tvTimerText.textSize = field
             circleProgressBar.invalidate()
             invalidate()
@@ -121,12 +121,12 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             strokeThicknessForeground = typedArray.getDimension(
                 R.styleable.CircularCountDownView_stroke_foreground_thickness,
                 strokeThicknessForeground
-            )
+            ).pxToDp()
 
             strokeThicknessBackground = typedArray.getDimension(
                 R.styleable.CircularCountDownView_stroke_background_thickness,
                 strokeThicknessBackground
-            )
+            ).pxToDp()
 
             timerTextColor = typedArray.getColor(
                 R.styleable.CircularCountDownView_timer_text_color,
@@ -141,7 +141,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             timerTextSize = typedArray.getDimension(
                 R.styleable.CircularCountDownView_timer_text_size,
                 timerTextSize
-            )
+            ).pxToSp()
 
             timerTotalSeconds =
                 typedArray.getInt(
@@ -260,5 +260,12 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
 
     private fun Float.pxToDp(): Float =
         this / Resources.getSystem().displayMetrics.density
+
+    //region Extensions Utils
+    private fun Float.spToPx(): Float =
+        this * Resources.getSystem().displayMetrics.scaledDensity
+
+    private fun Float.pxToSp(): Float =
+        this / Resources.getSystem().displayMetrics.scaledDensity
 
 }

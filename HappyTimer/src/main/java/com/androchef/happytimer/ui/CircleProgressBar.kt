@@ -2,6 +2,7 @@ package com.androchef.happytimer.ui
 
 import android.animation.ObjectAnimator
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -110,9 +111,9 @@ class CircleProgressBar(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val height =
-            getDefaultSize(suggestedMinimumHeight, heightMeasureSpec)
+            MeasureSpec.getSize(heightMeasureSpec)
         val width =
-            getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
+            MeasureSpec.getSize(widthMeasureSpec)
         val min = Math.min(width, height)
         setMeasuredDimension(min, min)
         val hightStrokeWidth = if(strokeWidthBackgroundProgress < strokeWidthForGroundProgress) strokeWidthBackgroundProgress else strokeWidthForGroundProgress
@@ -182,4 +183,11 @@ class CircleProgressBar(
     enum class ProgressFlow {
         LEFT_RIGHT, RIGHT_LEFT
     }
+
+    //region Extensions Utils
+    private fun Float.dpToPx(): Float =
+        this * Resources.getSystem().displayMetrics.density
+
+    private fun Float.pxToDp(): Float =
+        this / Resources.getSystem().displayMetrics.density
 }

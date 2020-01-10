@@ -16,20 +16,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="232dp" />
+            app:layout_constraintGuide_begin="225dp" />
 
         <com.androchef.happytimer.countdowntimer.CircularCountDownView
             android:id="@+id/circularCountDownView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="24dp"
-            app:timer_total_seconds="10"
-            app:timer_text_format="SECOND"
-            app:timer_type="COUNT_DOWN"
-            app:stroke_foreground_color="@color/colorLightBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnPauseTimer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:stroke_foreground_color="@color/colorLightBlue"
+            app:timer_type="COUNT_UP">
 
         </com.androchef.happytimer.countdowntimer.CircularCountDownView>
 
