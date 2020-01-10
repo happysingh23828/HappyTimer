@@ -14,10 +14,6 @@ import kotlinx.android.synthetic.main.activity_demo_circular_count_down.*
 
 class DemoCircularCountDownActivity : AppCompatActivity() {
 
-    var defaultForgroundStrokeThickness = 12f
-    var defaultBackgorundStrokeThickness = 12f
-    var defaultTimerSizeThickness = 12f
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_demo_circular_count_down)
@@ -114,27 +110,27 @@ class DemoCircularCountDownActivity : AppCompatActivity() {
 
     private fun onClicksForSizeChange() {
         btnPlusThicknessBackground.setOnClickListener {
-            circularCountDownView.strokeThicknessBackground = defaultBackgorundStrokeThickness++
+            circularCountDownView.strokeThicknessBackground+=1
         }
 
         btnMinusThicknessForeground.setOnClickListener {
-            circularCountDownView.strokeThicknessBackground = defaultBackgorundStrokeThickness--
+            circularCountDownView.strokeThicknessBackground-=1
         }
 
         btnPlusThicknessForeground.setOnClickListener {
-            circularCountDownView.strokeThicknessForeground = defaultForgroundStrokeThickness++
+            circularCountDownView.strokeThicknessForeground+=1
         }
 
         btnMinusThicknessForeground.setOnClickListener {
-            circularCountDownView.strokeThicknessForeground = defaultForgroundStrokeThickness--
+            circularCountDownView.strokeThicknessForeground-=1
         }
 
         btnPlusTimerTextSize.setOnClickListener {
-            circularCountDownView.timerTextSize = defaultTimerSizeThickness++
+            circularCountDownView.timerTextSize+=1
         }
 
         btnMinusTimerTextSize.setOnClickListener {
-            circularCountDownView.timerTextSize = defaultTimerSizeThickness--
+            circularCountDownView.timerTextSize-=1
         }
     }
 

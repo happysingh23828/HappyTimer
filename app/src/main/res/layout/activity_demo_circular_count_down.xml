@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="225dp" />
+            app:layout_constraintGuide_percent="0.25" />
 
         <com.androchef.happytimer.countdowntimer.CircularCountDownView
             android:id="@+id/circularCountDownView"
@@ -24,7 +24,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnPauseTimer"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -37,129 +37,125 @@
             android:id="@+id/edtTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="@string/enter_seconds_to_show"
+            android:imeOptions="actionDone"
             android:inputType="number"
             android:text="90"
-            android:imeOptions="actionDone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnInitTimer"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline" />
+            app:layout_constraintTop_toBottomOf="@+id/rgTimerTextFormat" />
 
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="422dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnMinusThicknessForeground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="@string/minus_thickness_foreground"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPlusTimerTextSize" />
+            app:layout_constraintBottom_toBottomOf="@+id/btnMinusTimerTextSize"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlusTimerTextSize"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnMinusTimerTextSize"
+            app:layout_constraintTop_toTopOf="@+id/btnMinusTimerTextSize" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPlusThicknessForeground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="@string/plus_thickness_foreground"
+            app:layout_constraintBottom_toBottomOf="@+id/btnPlusThicknessBackground"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnMinusThicknessForeground" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnMinusThicknessBackground"
+            app:layout_constraintTop_toTopOf="@+id/btnPlusThicknessBackground" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnMinusThicknessBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="@string/minus_thickness_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnPlusThicknessForeground" />
+            app:layout_constraintBottom_toBottomOf="@+id/btnPlusThicknessBackground"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlusThicknessForeground"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnPlusThicknessBackground"
+            app:layout_constraintTop_toTopOf="@+id/btnPlusThicknessBackground" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPlusThicknessBackground"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="8dp"
             android:text="@string/plus_thickness_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnMinusThicknessBackground"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnMinusThicknessBackground" />
+            app:layout_constraintTop_toBottomOf="@+id/btnResetTimer" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnChooseColorBackgroundStroke"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/choose_background_stroke"
-            app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsTimerTextBold"
+            app:layout_constraintBottom_toBottomOf="@+id/btnResetTimer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/checkBoxIsTimerTextBold"
-            app:layout_constraintTop_toTopOf="@+id/checkBoxIsTimerTextBold" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnChooseColorForegroundStroke"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/choose_foreground_stroke"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnChooseColorBackgroundStroke" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnChooseColorTimerText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/choose_timer_text_color"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnChooseColorForegroundStroke" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnPlusTimerTextSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/plus_timer_text_size"
-            app:layout_constraintEnd_toStartOf="@+id/btnMinusTimerTextSize"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnChooseColorTimerText" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnMinusTimerTextSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/minus_timer_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnPlusTimerTextSize"
-            app:layout_constraintTop_toBottomOf="@+id/btnChooseColorTimerText" />
+            app:layout_constraintStart_toEndOf="@+id/btnChooseColorForegroundStroke"
+            app:layout_constraintTop_toTopOf="@+id/btnResetTimer" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkBoxIsTimerTextBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="@string/timertextisbold"
-            app:layout_constraintEnd_toStartOf="@+id/btnChooseColorBackgroundStroke"
+            app:layout_constraintEnd_toStartOf="@+id/rgTimerType"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCurrentTimerTotalSeconds" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChooseColorForegroundStroke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_foreground_stroke"
+            app:layout_constraintEnd_toStartOf="@+id/btnChooseColorBackgroundStroke"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnChooseColorTimerText"
+            app:layout_constraintTop_toTopOf="@+id/btnResetTimer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChooseColorTimerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_timer_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/btnResetTimer"
+            app:layout_constraintEnd_toStartOf="@+id/btnChooseColorForegroundStroke"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnResetTimer"
+            app:layout_constraintTop_toTopOf="@+id/btnResetTimer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlusTimerTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_timer_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/btnMinusTimerTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnMinusThicknessForeground"
+            app:layout_constraintTop_toTopOf="@+id/btnMinusTimerTextSize" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMinusTimerTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/minus_timer_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/btnMinusThicknessForeground"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPlusThicknessBackground" />
 
         <RadioGroup
             android:id="@+id/rgTimerTextFormat"
@@ -169,7 +165,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rgTimerType">
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxIsTimerTextBold">
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/timerTextFormatHMS"
@@ -201,11 +197,13 @@
             android:id="@+id/rgTimerType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsTimerTextBold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnResetTimer">
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxIsTimerTextBold"
+            app:layout_constraintTop_toTopOf="@+id/checkBoxIsTimerTextBold"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/timerTypeCountDown"
@@ -227,11 +225,12 @@
             android:id="@+id/btnStartTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@string/start"
             app:layout_constraintEnd_toStartOf="@+id/btnPauseTimer"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+            app:layout_constraintTop_toBottomOf="@+id/tvCurrentTimerTotalSeconds" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStopTimer"
@@ -261,7 +260,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/reset"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnChooseColorTimerText"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnStartTimer" />
 

@@ -21,6 +21,9 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             circleProgressBar.invalidate()
             invalidate()
         }
+        get() {
+            return field.pxToDp()
+        }
 
     var strokeThicknessBackground: Float = 3f.dpToPx()
         set(value) {
@@ -28,6 +31,9 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             circleProgressBar.setStrokeWidth(strokeThicknessForeground, field)
             circleProgressBar.invalidate()
             invalidate()
+        }
+        get() {
+            return field.pxToDp()
         }
 
     var strokeColorForeground: Int = Color.GRAY
@@ -61,11 +67,14 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             circleProgressBar.invalidate()
             invalidate()
         }
+        get() {
+            return field.pxToSp()
+        }
 
     var timerTextIsBold: Boolean = resources.getBoolean(R.bool.default_timer_text_is_bold)
         set(value) {
             field = value
-            if(value)
+            if (value)
                 tvTimerText.setTypeface(null, Typeface.BOLD)
             else
                 tvTimerText.setTypeface(null, Typeface.NORMAL)
@@ -196,7 +205,7 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
     private fun setOnTickListener() {
         happyTimer?.setOnTickListener(object : HappyTimer.OnTickListener {
             override fun onTick(completedSeconds: Int, remainingSeconds: Int) {
-                onTickListener?.onTick(completedSeconds ,remainingSeconds)
+                onTickListener?.onTick(completedSeconds, remainingSeconds)
                 setTimerText(completedSeconds, remainingSeconds)
                 circleProgressBar.setProgressWithAnimation(remainingSeconds.toFloat())
             }
