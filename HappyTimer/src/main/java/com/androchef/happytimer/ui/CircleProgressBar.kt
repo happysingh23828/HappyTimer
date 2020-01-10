@@ -41,10 +41,10 @@ class CircleProgressBar(
 
     private var progressFlow: ProgressFlow = ProgressFlow.RIGHT_LEFT
 
-    fun setStrokeWidth(strokeWidthForeground: Float, strokeWidthBackground: Float? = null) {
+    fun setStrokeWidth(strokeWidthForeground: Float, strokeWidthBackground: Float) {
         this.strokeWidthForGroundProgress = strokeWidthForeground
-        this.strokeWidthBackgroundProgress = strokeWidthBackground ?: strokeWidthForeground
-        backgroundPaint!!.strokeWidth = strokeWidthBackground ?: strokeWidthForeground
+        this.strokeWidthBackgroundProgress = strokeWidthBackground
+        backgroundPaint!!.strokeWidth = strokeWidthBackground
         foregroundPaint!!.strokeWidth = strokeWidthForeground
         invalidate()
         requestLayout() //Because it should recalculate its bounds
@@ -116,7 +116,7 @@ class CircleProgressBar(
             MeasureSpec.getSize(widthMeasureSpec)
         val min = Math.min(width, height)
         setMeasuredDimension(min, min)
-        val hightStrokeWidth = if(strokeWidthBackgroundProgress < strokeWidthForGroundProgress) strokeWidthBackgroundProgress else strokeWidthForGroundProgress
+        val hightStrokeWidth = strokeWidthForGroundProgress
         rectF!![0 + hightStrokeWidth / 2, 0 + hightStrokeWidth / 2, min - hightStrokeWidth / 2] =
             min - hightStrokeWidth / 2
     }

@@ -16,8 +16,13 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
 
     var strokeThicknessForeground: Float = 3f.dpToPx()
         set(value) {
-            field = value.dpToPx()
-            circleProgressBar.setStrokeWidth(field, strokeThicknessBackground)
+            /**
+             * Foreground thickness can't be lesser than background thickness.
+             */
+            if (value >= strokeThicknessBackground) {
+                field = value.dpToPx()
+            }
+            circleProgressBar.setStrokeWidth(strokeThicknessForeground, strokeThicknessBackground)
             circleProgressBar.invalidate()
             invalidate()
         }
@@ -27,8 +32,13 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
 
     var strokeThicknessBackground: Float = 3f.dpToPx()
         set(value) {
-            field = value.dpToPx()
-            circleProgressBar.setStrokeWidth(strokeThicknessForeground, field)
+            /**
+             * Background thickness can't be grater than foreground thickness.
+             */
+            if (value <= strokeThicknessForeground) {
+                field = value.dpToPx()
+            }
+            circleProgressBar.setStrokeWidth(strokeThicknessForeground, strokeThicknessBackground)
             circleProgressBar.invalidate()
             invalidate()
         }

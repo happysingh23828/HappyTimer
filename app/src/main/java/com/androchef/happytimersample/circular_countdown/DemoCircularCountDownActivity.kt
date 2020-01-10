@@ -113,7 +113,7 @@ class DemoCircularCountDownActivity : AppCompatActivity() {
             circularCountDownView.strokeThicknessBackground+=1
         }
 
-        btnMinusThicknessForeground.setOnClickListener {
+        btnMinusThicknessBackground.setOnClickListener {
             circularCountDownView.strokeThicknessBackground-=1
         }
 

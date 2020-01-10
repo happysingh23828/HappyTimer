@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.38" />
 
         <com.androchef.happytimer.countdowntimer.CircularCountDownView
             android:id="@+id/circularCountDownView"
@@ -29,6 +29,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:stroke_foreground_color="@color/colorLightBlue"
+            app:stroke_foreground_thickness="40dp"
+            app:stroke_background_thickness="31dp"
+            app:timer_text_size="20sp"
+            app:timer_text_format="HOUR_MINUTE_SECOND"
             app:timer_type="COUNT_UP">
 
         </com.androchef.happytimer.countdowntimer.CircularCountDownView>
@@ -108,11 +112,12 @@
             android:id="@+id/checkBoxIsTimerTextBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/timertextisbold"
             app:layout_constraintEnd_toStartOf="@+id/rgTimerType"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+            app:layout_constraintTop_toBottomOf="@+id/btnMinusTimerTextSize" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnChooseColorForegroundStroke"
@@ -225,12 +230,11 @@
             android:id="@+id/btnStartTimer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/start"
             app:layout_constraintEnd_toStartOf="@+id/btnPauseTimer"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCurrentTimerTotalSeconds" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnStopTimer"
