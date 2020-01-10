@@ -139,6 +139,12 @@ class DemoCircularCountDownActivity : AppCompatActivity() {
             circularCountDownView.timerTextIsBold = checkBoxIsTimerTextBold.isChecked
         }
 
+        checkBoxIsTimerTextShown.setOnClickListener {
+            circularCountDownView.isTimerTextShown = checkBoxIsTimerTextShown.isChecked
+        }
+
+
+
         rgTimerType.setOnCheckedChangeListener { group, checkedId ->
             circularCountDownView.timerType = when (checkedId) {
                 R.id.timerTypeCountUp -> HappyTimer.Type.COUNT_UP

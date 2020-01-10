@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.androchef.happytimer.R
 import com.androchef.happytimer.utils.DateTimeUtils
@@ -108,6 +109,13 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             invalidate()
         }
 
+    var isTimerTextShown: Boolean = true
+        set(value) {
+            field = value
+            tvTimerText.isToShow(field)
+            invalidate()
+        }
+
     private var timerTotalSeconds: Int = resources.getInteger(R.integer.default_timer_total_seconds)
 
     private var happyTimer: HappyTimer? = HappyTimer(timerTotalSeconds)
@@ -155,6 +163,11 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
             timerTextIsBold = typedArray.getBoolean(
                 R.styleable.CircularCountDownView_timer_text_isBold,
                 timerTextIsBold
+            )
+
+            isTimerTextShown = typedArray.getBoolean(
+                R.styleable.CircularCountDownView_timer_text_shown,
+                isTimerTextShown
             )
 
             timerTextSize = typedArray.getDimension(
@@ -286,5 +299,24 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
 
     private fun Float.pxToSp(): Float =
         this / Resources.getSystem().displayMetrics.scaledDensity
+
+    private fun View.isToShow(boolean: Boolean) {
+        if (boolean)
+            this.visible()
+        else
+            this.gone()
+    }
+
+    private fun View.visible() {
+        this.visibility = View.VISIBLE
+    }
+
+    private fun View.gone() {
+        this.visibility = View.GONE
+    }
+
+    private fun View.invisible() {
+        this.visibility = View.VISIBLE
+    }
 
 }

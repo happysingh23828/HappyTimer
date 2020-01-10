@@ -9,6 +9,7 @@
         <attr name="stroke_foreground_thickness" format="dimension" />
         <attr name="stroke_background_thickness" format="dimension" />
         <attr name="timer_text_size" format="dimension" />
+        <attr name="timer_text_shown" format="boolean" />
         <attr name="timer_text_color" format="color" />
         <attr name="timer_text_isBold" format="boolean" />
         <attr name="timer_type" format="enum">
