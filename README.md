@@ -32,6 +32,9 @@ dependencies {
 }
 ```
 
+## Demo Video
+[Click here to see demo video](https://www.youtube.com/watch?v=ItdbO-yLDnY)
+
 ## Usage
 In this library all the UI widgets are using a common [HappyTimer](https://github.com/happysingh23828/HappyTimer/blob/master/HappyTimer/src/main/java/com/androchef/happytimer/countdowntimer/HappyTimer.kt) class for implementing timer.
 
@@ -279,7 +282,7 @@ class DemoDynamicCountDownActivity : AppCompatActivity() {
 }
 ```
 
-### DynamicCountDownView
+### NormalCountDownView
 
 #### Layout(XML)
 ```xml
