@@ -1,13 +1,15 @@
-# HappyTimer- An Android Timer Library
+# HappyTimer- An Android Timer UI Library
 [![platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=plastic)](https://android-arsenal.com/api?level=21)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![](https://jitpack.io/v/happysingh23828/HappyTimer.svg)](https://jitpack.io/#happysingh23828/HappyTimer)
 
+
+![Happy Timer](screenshots/Banner.png)
+
 ## Prerequisites
 
 Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
-
 ```gradle
 allprojects {
 	repositories {
@@ -27,6 +29,12 @@ dependencies {
 	implementation 'com.github.happysingh23828:HappyTimer:1.0.0'
 }
 ```
+
+## Documentation
+In this library whole all the UI widgets are Using a common [HappyTimer.kt](https://github.com/happysingh23828/HappyTimer/blob/master/HappyTimer/src/main/java/com/androchef/happytimer/countdowntimer/HappyTimer.kt) for managing time. You can use that class directly
+to implement your custom timer.
+
+### HappyTimer.kt 
 
 ## Donation
 If this project help you reduce time to develop, you can give me a cup of coffee :) 
