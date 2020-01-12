@@ -28,6 +28,11 @@ dependencies {
 }
 ```
 
+## Donation
+If this project help you reduce time to develop, you can give me a cup of coffee :) 
+
+<a href="https://www.buymeacoffee.com/UE8o2WT" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
 ## Contributing
 
 Please fork this repository and contribute back using
