@@ -11,8 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".normal_countdown.NormalCountDownActivity"></activity>
-        <activity android:name=".circular_countdown.DemoCircularCountDownActivity" />
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".dynamic_countdown.DemoDynamicCountDownActivity"/>
+        <activity android:name=".normal_countdown.NormalCountDownActivity" />
+        <activity android:name=".circular_countdown.DemoCircularCountDownActivity" />
     </application>
 
 </manifest>

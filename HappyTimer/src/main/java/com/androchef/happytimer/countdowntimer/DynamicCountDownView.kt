@@ -7,6 +7,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.androchef.happytimer.R
 import com.androchef.happytimer.countdowntimer.pojo.NormalCountDownTime
@@ -34,32 +35,39 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
             invalidate()
         }
 
-    var timerTextSize: Float = resources.getDimension(R.dimen.default_normal_timer_text_size)
+    var timerTextSize: Float = 30f.spToPx()
         set(value) {
             field = value
             setTimerTextViewSize(value)
             invalidate()
+            requestLayout()
         }
 
-    var timerTextSeparatorSize: Float =
-        resources.getDimension(R.dimen.default_normal_timer_text_label_size)
+    var timerTextSeparatorSize: Float = 12f.spToPx()
         set(value) {
             field = value
             setTimerSeparatorTextViewSize(value)
             invalidate()
+            requestLayout()
         }
 
-    var timerTextIsBold: Boolean = resources.getBoolean(R.bool.default_timer_text_is_bold)
+    var timerTextIsBold: Boolean = false
         set(value) {
             field = value
-            setTimerTextViewToBold()
+            if(field)
+                setTimerTextViewToBold()
+            else
+                setTimerTextViewToNormal()
             invalidate()
         }
 
-    var timerTextSeparatorIsBold: Boolean = resources.getBoolean(R.bool.default_timer_text_is_bold)
+    var timerTextSeparatorIsBold: Boolean = false
         set(value) {
             field = value
-            setTimerTextViewSeparatorToBold()
+            if(field)
+                setTimerTextViewSeparatorToBold()
+            else
+                setTimerTextViewSepartorToNormal()
             invalidate()
         }
 
@@ -117,6 +125,7 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
             value?.let {
                 setTimerTextCustomBackground(value)
                 invalidate()
+                requestLayout()
             }
         }
 
@@ -127,7 +136,12 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
             invalidate()
         }
 
-    private var timerType: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN
+    var timerType: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN
+        set(value) {
+            field = value
+            invalidate()
+        }
+
 
     private var timerTotalSeconds: Int = resources.getInteger(R.integer.default_timer_total_seconds)
 
@@ -156,14 +170,14 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
             )
 
             timerTextSize = typedArray.getDimension(
-                R.styleable.DynamicCountDownView_dynamic_timer_separator_text_size,
+                R.styleable.DynamicCountDownView_dynamic_timer_text_size,
                 timerTextSize
-            )
+            ).pxToSp()
 
             timerTextSeparatorSize = typedArray.getDimension(
                 R.styleable.DynamicCountDownView_dynamic_timer_separator_text_size,
                 timerTextSeparatorSize
-            )
+            ).pxToSp()
 
             timerTextIsBold = typedArray.getBoolean(
                 R.styleable.DynamicCountDownView_dynamic_timer_text_isBold,
@@ -211,7 +225,6 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
 
     fun initTimer(totalTimeInSeconds: Int, type: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN) {
         this.timerTotalSeconds = totalTimeInSeconds
-        this.timerType = type
         stopTimer()
         happyTimer = HappyTimer(totalTimeInSeconds, 3000)
         setOnTickListener()
@@ -266,6 +279,7 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
         tvSeconds.text = countDownTime.seconds.toString().padStart(2, '0')
     }
 
+
     private fun onInitTimerState() {
         setTimerTextInitial()
     }
@@ -309,10 +323,9 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
     }
 
     private fun setTimerTextViewSize(textSize: Float) {
-        val sizeInPX = textSize.dpToPx()
-        tvHour.textSize = sizeInPX
-        tvMinutes.textSize = sizeInPX
-        tvSeconds.textSize = sizeInPX
+        tvHour.textSize = textSize
+        tvMinutes.textSize = textSize
+        tvSeconds.textSize = textSize
     }
 
     private fun setTimerTextViewColor(color: Int) {
@@ -323,9 +336,8 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
 
 
     private fun setTimerSeparatorTextViewSize(textSize: Float) {
-        val sizeInPX = textSize.dpToPx()
-        tvHourSeparator.textSize = sizeInPX
-        tvMinutesSeparator.textSize = sizeInPX
+        tvHourSeparator.textSize = textSize
+        tvMinutesSeparator.textSize = textSize
     }
 
     private fun setTimerSeparatorTextViewColor(color: Int) {
@@ -334,15 +346,27 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
     }
 
     private fun setTimerTextViewToBold() {
-        tvHour.setTextAppearance(context, Typeface.BOLD)
-        tvMinutes.setTextAppearance(context, Typeface.BOLD)
-        tvSeconds.setTextAppearance(context, Typeface.BOLD)
+        tvHour.setTypeface(null, Typeface.BOLD)
+        tvMinutes.setTypeface(null, Typeface.BOLD)
+        tvSeconds.setTypeface(null, Typeface.BOLD)
     }
 
     private fun setTimerTextViewSeparatorToBold() {
-        tvHourSeparator.setTextAppearance(context, Typeface.BOLD)
-        tvMinutesSeparator.setTextAppearance(context, Typeface.BOLD)
+        tvHourSeparator.setTypeface(null, Typeface.BOLD)
+        tvMinutesSeparator.setTypeface(null, Typeface.BOLD)
     }
+
+    private fun setTimerTextViewToNormal() {
+        tvHour.setTypeface(null, Typeface.NORMAL)
+        tvMinutes.setTypeface(null, Typeface.NORMAL)
+        tvSeconds.setTypeface(null, Typeface.NORMAL)
+    }
+
+    private fun setTimerTextViewSepartorToNormal() {
+        tvHourSeparator.setTypeface(null, Typeface.NORMAL)
+        tvMinutesSeparator.setTypeface(null, Typeface.NORMAL)
+    }
+
 
 
     private fun hideSeparator() {
@@ -399,4 +423,18 @@ class DynamicCountDownView(context: Context, attributeSet: AttributeSet) :
 
     private fun Float.pxToDp(): Float =
         this / Resources.getSystem().displayMetrics.density
+
+    //region Extensions Utils
+    private fun Float.spToPx(): Float =
+        this * Resources.getSystem().displayMetrics.scaledDensity
+
+    private fun Float.pxToSp(): Float =
+        this / Resources.getSystem().displayMetrics.scaledDensity
+
+    private fun View.isToShow(boolean: Boolean) {
+        if (boolean)
+            this.visible()
+        else
+            this.gone()
+    }
 }

@@ -39,4 +39,7 @@
     <string name="show_hours">Show Hours</string>
     <string name="show_minutes">Show Minutes</string>
     <string name="show_seconds">Show Seconds</string>
+    <string name="minus_timer_separator_size">- Timer separator size</string>
+    <string name="plus_timer_separator_size">+Timer Separator Size</string>
+    <string name="separator_color">Separator Color</string>
 </resources>

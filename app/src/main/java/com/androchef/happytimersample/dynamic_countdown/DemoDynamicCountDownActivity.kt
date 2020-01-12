@@ -1,4 +1,4 @@
-package com.androchef.happytimersample.normal_countdown
+package com.androchef.happytimersample.dynamic_countdown
 
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -8,13 +8,13 @@ import com.androchef.happytimersample.R
 import com.androchef.happytimersample.utils.toast
 import com.skydoves.colorpickerview.ColorPickerDialog
 import com.skydoves.colorpickerview.listeners.ColorEnvelopeListener
-import kotlinx.android.synthetic.main.activity_normal_count_down.*
+import kotlinx.android.synthetic.main.activity_demo_dynamic_count_down.*
 
-class NormalCountDownActivity : AppCompatActivity() {
+class DemoDynamicCountDownActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_normal_count_down)
+        setContentView(R.layout.activity_demo_dynamic_count_down)
         onClicksForColor()
         onClicksForSizeChange()
         setCheckBoxAndRadioChangeListener()
@@ -26,7 +26,7 @@ class NormalCountDownActivity : AppCompatActivity() {
     private fun setEditTextListeners() {
         btnInitTimer.setOnClickListener {
             if (edtTime.text.toString().isBlank().not()) {
-                normalCountDownView.initTimer(edtTime.text.toString().toInt())
+                dynamicCountDownView.initTimer(edtTime.text.toString().toInt())
                 setTickInitialText()
                 setTimerSecondsListeners()
             } else {
@@ -43,28 +43,28 @@ class NormalCountDownActivity : AppCompatActivity() {
 
     private fun setBtnActionsListeners() {
         btnStartTimer.setOnClickListener {
-            normalCountDownView.startTimer()
+            dynamicCountDownView.startTimer()
         }
 
         btnPauseTimer.setOnClickListener {
-            normalCountDownView.pauseTimer()
+            dynamicCountDownView.pauseTimer()
         }
 
         btnResumeTimer.setOnClickListener {
-            normalCountDownView.resumeTimer()
+            dynamicCountDownView.resumeTimer()
         }
 
         btnStopTimer.setOnClickListener {
-            normalCountDownView.stopTimer()
+            dynamicCountDownView.stopTimer()
         }
 
         btnResetTimer.setOnClickListener {
-            normalCountDownView.resetTimer()
+            dynamicCountDownView.resetTimer()
         }
     }
 
     private fun setTimerSecondsListeners() {
-        normalCountDownView.setOnTickListener(object : HappyTimer.OnTickListener {
+        dynamicCountDownView.setOnTickListener(object : HappyTimer.OnTickListener {
             override fun onTick(completedSeconds: Int, remainingSeconds: Int) {
                 tvCurrentTimerCompletedSeconds.text = completedSeconds.toString()
             }
@@ -74,7 +74,7 @@ class NormalCountDownActivity : AppCompatActivity() {
             }
         })
 
-        normalCountDownView.setStateChangeListener(object : HappyTimer.OnStateChangeListener {
+        dynamicCountDownView.setStateChangeListener(object : HappyTimer.OnStateChangeListener {
             override fun onStateChange(
                 state: HappyTimer.State,
                 completedSeconds: Int,
@@ -89,13 +89,13 @@ class NormalCountDownActivity : AppCompatActivity() {
 
         btnChooseTextColor.setOnClickListener {
             showPicker(ColorEnvelopeListener { envelop, _ ->
-                normalCountDownView.timerTextColor = envelop.color
+                dynamicCountDownView.timerTextColor = envelop.color
             })
         }
 
         btnChooseTextLabelColor.setOnClickListener {
             showPicker(ColorEnvelopeListener { envelop, _ ->
-                normalCountDownView.timerTextLabelColor = envelop.color
+                dynamicCountDownView.timerTextSeparatorColor = envelop.color
             })
         }
 
@@ -103,19 +103,19 @@ class NormalCountDownActivity : AppCompatActivity() {
 
     private fun onClicksForSizeChange() {
         btnPlusTimerTextSize.setOnClickListener {
-            normalCountDownView.timerTextSize+=1
+            dynamicCountDownView.timerTextSize+=1
         }
 
         btnMinusTimerTextSize.setOnClickListener {
-            normalCountDownView.timerTextSize-=1
+            dynamicCountDownView.timerTextSize-=1
         }
 
         btnPlusTimerLabelTextSize.setOnClickListener {
-            normalCountDownView.timerTextLabelSize+=1
+            dynamicCountDownView.timerTextSeparatorSize+=1
         }
 
         btnMinusTimerLabelTextSize.setOnClickListener {
-            normalCountDownView.timerTextLabelSize-=1
+            dynamicCountDownView.timerTextSeparatorSize-=1
         }
 
 
@@ -124,7 +124,7 @@ class NormalCountDownActivity : AppCompatActivity() {
     private fun setCheckBoxAndRadioChangeListener() {
 
         rgTimerType.setOnCheckedChangeListener { group, checkedId ->
-            normalCountDownView.timerType = when (checkedId) {
+            dynamicCountDownView.timerType = when (checkedId) {
                 R.id.timerTypeCountUp -> HappyTimer.Type.COUNT_UP
                 R.id.timerTypeCountDown -> HappyTimer.Type.COUNT_DOWN
                 else -> HappyTimer.Type.COUNT_DOWN
@@ -132,27 +132,27 @@ class NormalCountDownActivity : AppCompatActivity() {
         }
 
         showHours.setOnClickListener {
-            normalCountDownView.showHour = showHours.isChecked
+            dynamicCountDownView.showHour = showHours.isChecked
         }
 
         showMinutes.setOnClickListener {
-            normalCountDownView.showMinutes = showMinutes.isChecked
+            dynamicCountDownView.showMinutes = showMinutes.isChecked
         }
 
         showSeconds.setOnClickListener {
-            normalCountDownView.showSeconds = showSeconds.isChecked
+            dynamicCountDownView.showSeconds = showSeconds.isChecked
         }
 
-        showLabels.setOnClickListener {
-            normalCountDownView.showLabels = showLabels.isChecked
+        showSeparator.setOnClickListener {
+            dynamicCountDownView.showSeparators = showSeparator.isChecked
         }
 
         checkBoxIsTimerTextBold.setOnClickListener {
-            normalCountDownView.timerTextIsBold = checkBoxIsTimerTextBold.isChecked
+            dynamicCountDownView.timerTextIsBold = checkBoxIsTimerTextBold.isChecked
         }
 
-        checkBoxIsTimerTextLabelBold.setOnClickListener {
-            normalCountDownView.timerTextLabelIsBold = checkBoxIsTimerTextLabelBold.isChecked
+        checkBoxIsTimerTextSeparatorBold.setOnClickListener {
+            dynamicCountDownView.timerTextSeparatorIsBold = checkBoxIsTimerTextSeparatorBold.isChecked
         }
 
     }
@@ -170,4 +170,5 @@ class NormalCountDownActivity : AppCompatActivity() {
             .show()
 
     }
+
 }

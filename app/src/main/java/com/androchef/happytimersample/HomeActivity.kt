@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.androchef.happytimersample.circular_countdown.DemoCircularCountDownActivity
+import com.androchef.happytimersample.dynamic_countdown.DemoDynamicCountDownActivity
 import com.androchef.happytimersample.normal_countdown.NormalCountDownActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -21,6 +22,9 @@ class HomeActivity : AppCompatActivity() {
         }
         btnNormalCountDown.setOnClickListener {
             startActivity(Intent(this, NormalCountDownActivity::class.java))
+        }
+        btnDynamic.setOnClickListener {
+            startActivity(Intent(this, DemoDynamicCountDownActivity::class.java))
         }
     }
 }
