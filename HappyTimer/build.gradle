@@ -1,3 +1,5 @@
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.happysingh23828'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
