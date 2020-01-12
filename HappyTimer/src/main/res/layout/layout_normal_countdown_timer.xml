@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSeconds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:padding="0dp"
+            android:text="@string/placeholder_time"
             android:textSize="@dimen/text_size_xxx_large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvSecondsLabel"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvMinutesLabel"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/placeholder_time" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSecondsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:padding="0dp"
             android:text="@string/label_second"
             android:textSize="@dimen/text_size_x_large"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvSeconds"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvSeconds" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -43,12 +49,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:padding="0dp"
             android:text="@string/placeholder_time"
             android:textSize="@dimen/text_size_xxx_large"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvMinutesLabel"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvHourLabel"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,11 +62,13 @@
             android:id="@+id/tvMinutesLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:padding="0dp"
             android:text="@string/label_minutes"
             android:textSize="@dimen/text_size_x_large"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvMinutes"
+            app:layout_constraintEnd_toStartOf="@+id/tvSeconds"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvMinutes" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -68,12 +76,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:padding="0dp"
             android:text="@string/placeholder_time"
             android:textSize="@dimen/text_size_xxx_large"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvHourLabel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,12 +90,14 @@
             android:id="@+id/tvHourLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:padding="0dp"
             android:text="@string/label_hour"
             android:textSize="@dimen/text_size_x_large"
             app:layout_constraintBaseline_toBaselineOf="@+id/tvHour"
+            app:layout_constraintEnd_toStartOf="@+id/tvMinutes"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvHour" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</merge>

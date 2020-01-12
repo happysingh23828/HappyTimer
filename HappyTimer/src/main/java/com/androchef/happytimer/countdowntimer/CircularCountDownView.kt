@@ -73,13 +73,10 @@ class CircularCountDownView(context: Context, attributeSet: AttributeSet) :
 
     var timerTextSize: Float = 10f.spToPx()
         set(value) {
-            field = value.spToPx()
+            field = value
             tvTimerText.textSize = field
             circleProgressBar.invalidate()
             invalidate()
-        }
-        get() {
-            return field.pxToSp()
         }
 
     var timerTextIsBold: Boolean = resources.getBoolean(R.bool.default_timer_text_is_bold)

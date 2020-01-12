@@ -32,4 +32,11 @@
     <string name="init_timer">Init timer</string>
     <string name="unknown">UNKNOWN</string>
     <string name="isTimerTextShown">ShowTimerText</string>
+    <string name="minus_timer_label_size">- Timer label size</string>
+    <string name="plus_timer_label_size">+ Timer label size</string>
+    <string name="timertextlabelbold">TimerTextLabelBold</string>
+    <string name="label_text_color">Label text color</string>
+    <string name="show_hours">Show Hours</string>
+    <string name="show_minutes">Show Minutes</string>
+    <string name="show_seconds">Show Seconds</string>
 </resources>

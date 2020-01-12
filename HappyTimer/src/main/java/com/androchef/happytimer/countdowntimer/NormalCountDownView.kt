@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.androchef.happytimer.R
 import com.androchef.happytimer.countdowntimer.pojo.NormalCountDownTime
@@ -31,32 +32,37 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
             invalidate()
         }
 
-    var timerTextSize: Float = resources.getDimension(R.dimen.default_normal_timer_text_size)
+    var timerTextSize: Float = 30f.spToPx()
         set(value) {
             field = value
-            setTimerTextViewSize(value)
+            setTimerTextViewSize(field)
             invalidate()
         }
 
-    var timerTextLabelSize: Float =
-        resources.getDimension(R.dimen.default_normal_timer_text_label_size)
+    var timerTextLabelSize: Float = 18f.spToPx()
         set(value) {
             field = value
-            setTimerLabelTextViewSize(value)
+            setTimerLabelTextViewSize(field)
             invalidate()
         }
 
-    var timerTextIsBold: Boolean = resources.getBoolean(R.bool.default_timer_text_is_bold)
+    var timerTextIsBold: Boolean = false
         set(value) {
             field = value
-            setTimerTextViewToBold()
+            if(value)
+                setTimerTextViewToBold()
+             else
+                setTimerTextViewToNormal()
             invalidate()
         }
 
-    var timerTextLabelIsBold: Boolean = resources.getBoolean(R.bool.default_timer_text_is_bold)
+    var timerTextLabelIsBold: Boolean = false
         set(value) {
             field = value
-            setTimerTextViewLabelToBold()
+            if(value)
+                setTimerTextViewLabelToBold()
+            else
+                setTimerTextViewLabelToNormal()
             invalidate()
         }
 
@@ -101,6 +107,10 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
         }
 
     var timerType: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     private var timerTotalSeconds: Int = resources.getInteger(R.integer.default_timer_total_seconds)
 
@@ -131,12 +141,12 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
             timerTextSize = typedArray.getDimension(
                 R.styleable.NormalCountDownView_normal_timer_text_size,
                 timerTextSize
-            )
+            ).pxToSp()
 
             timerTextLabelSize = typedArray.getDimension(
                 R.styleable.NormalCountDownView_normal_timer_label_text_size,
                 timerTextLabelSize
-            )
+            ).pxToSp()
 
             timerTextIsBold = typedArray.getBoolean(
                 R.styleable.CircularCountDownView_timer_text_isBold,
@@ -180,7 +190,6 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
 
     fun initTimer(totalTimeInSeconds: Int, type: HappyTimer.Type = HappyTimer.Type.COUNT_DOWN) {
         this.timerTotalSeconds = totalTimeInSeconds
-        this.timerType = type
         stopTimer()
         happyTimer = HappyTimer(totalTimeInSeconds, 3000)
         setOnTickListener()
@@ -251,10 +260,9 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
 
 
     private fun setTimerTextViewSize(textSize: Float) {
-        val sizeInPX = textSize.dpToPx()
-        tvHour.textSize = sizeInPX
-        tvMinutes.textSize = sizeInPX
-        tvSeconds.textSize = sizeInPX
+        tvHour.textSize = textSize
+        tvMinutes.textSize = textSize
+        tvSeconds.textSize = textSize
     }
 
     private fun setTimerTextViewColor(color: Int) {
@@ -265,10 +273,9 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
 
 
     private fun setTimerLabelTextViewSize(textSize: Float) {
-        val sizeInPX = textSize.dpToPx()
-        tvHourLabel.textSize = sizeInPX
-        tvMinutesLabel.textSize = sizeInPX
-        tvSecondsLabel.textSize = sizeInPX
+        tvHourLabel.textSize = textSize
+        tvMinutesLabel.textSize = textSize
+        tvSecondsLabel.textSize = textSize
     }
 
     private fun setTimerLabelTextViewColor(color: Int) {
@@ -278,17 +285,28 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
     }
 
     private fun setTimerTextViewToBold() {
-        tvHour.setTextAppearance(context, Typeface.BOLD)
-        tvMinutes.setTextAppearance(context, Typeface.BOLD)
-        tvSeconds.setTextAppearance(context, Typeface.BOLD)
+        tvHour.setTypeface(null, Typeface.BOLD)
+        tvMinutes.setTypeface(null, Typeface.BOLD)
+        tvSeconds.setTypeface(null, Typeface.BOLD)
     }
 
     private fun setTimerTextViewLabelToBold() {
-        tvHourLabel.setTextAppearance(context, Typeface.BOLD)
-        tvMinutesLabel.setTextAppearance(context, Typeface.BOLD)
-        tvSecondsLabel.setTextAppearance(context, Typeface.BOLD)
+        tvHourLabel.setTypeface(null, Typeface.BOLD)
+        tvMinutesLabel.setTypeface(null, Typeface.BOLD)
+        tvSecondsLabel.setTypeface(null, Typeface.BOLD)
     }
 
+    private fun setTimerTextViewToNormal() {
+        tvHour.setTypeface(null, Typeface.NORMAL)
+        tvMinutes.setTypeface(null, Typeface.NORMAL)
+        tvSeconds.setTypeface(null, Typeface.NORMAL)
+    }
+
+    private fun setTimerTextViewLabelToNormal() {
+        tvHourLabel.setTypeface(null, Typeface.NORMAL)
+        tvMinutesLabel.setTypeface(null, Typeface.NORMAL)
+        tvSecondsLabel.setTypeface(null, Typeface.NORMAL)
+    }
 
     private fun hideLabel() {
         tvHourLabel.gone()
@@ -349,4 +367,19 @@ class NormalCountDownView(context: Context, attributeSet: AttributeSet) :
 
     private fun Float.pxToDp(): Float =
         this / Resources.getSystem().displayMetrics.density
+
+    //region Extensions Utils
+    private fun Float.spToPx(): Float =
+        this * Resources.getSystem().displayMetrics.scaledDensity
+
+    private fun Float.pxToSp(): Float =
+        this / Resources.getSystem().displayMetrics.scaledDensity
+
+    private fun View.isToShow(boolean: Boolean) {
+        if (boolean)
+            this.visible()
+        else
+            this.gone()
+    }
+
 }

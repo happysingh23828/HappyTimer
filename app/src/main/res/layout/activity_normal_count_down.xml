@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".circular_countdown.DemoCircularCountDownActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxIsTimerTextLabelBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/timertextlabelbold"
+            app:layout_constraintEnd_toStartOf="@+id/showLabels"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxIsTimerTextBold" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/showLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checked="true"
+            android:text="Show Labels"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsTimerTextLabelBold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxIsTimerTextLabelBold"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxIsTimerTextBold" />
+
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/showSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/show_seconds"
+            app:layout_constraintBottom_toBottomOf="@+id/showMinutes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/showHours"
+            app:layout_constraintTop_toTopOf="@+id/showMinutes" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/showHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/show_hours"
+            app:layout_constraintBottom_toBottomOf="@+id/showMinutes"
+            app:layout_constraintEnd_toStartOf="@+id/showSeconds"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/showMinutes"
+            app:layout_constraintTop_toTopOf="@+id/showMinutes" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/showMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:checked="true"
+            android:text="@string/show_minutes"
+            app:layout_constraintEnd_toStartOf="@+id/showHours"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxIsTimerTextLabelBold" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.23" />
+
+        <com.androchef.happytimer.countdowntimer.NormalCountDownView
+            android:id="@+id/normalCountDownView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:normal_timer_text_size="30sp"
+            app:normal_timer_label_text_size="18sp"
+            app:normal_timer_text_color="@color/colorLightBlue"
+            app:normal_timer_text_label_color="@color/colorGrey"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+        </com.androchef.happytimer.countdowntimer.NormalCountDownView>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/enter_seconds_to_show"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:text="90"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnInitTimer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/showMinutes" />
+
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkBoxIsTimerTextBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/timertextisbold"
+            app:layout_constraintEnd_toStartOf="@+id/rgTimerType"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnChooseTextLabelColor" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlusTimerTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_timer_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/btnMinusTimerTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnMinusTimerTextSize"
+            app:layout_constraintTop_toTopOf="@+id/btnMinusTimerTextSize" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChooseTextLabelColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/label_text_color"
+            app:layout_constraintEnd_toStartOf="@+id/btnChooseTextColor"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMinusTimerTextSize" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnChooseTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_timer_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/btnChooseTextLabelColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnChooseTextLabelColor"
+            app:layout_constraintTop_toTopOf="@+id/btnChooseTextLabelColor" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMinusTimerTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/minus_timer_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlusTimerTextSize"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnResetTimer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMinusTimerLabelTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_timer_label_size"
+            app:layout_constraintBottom_toBottomOf="@+id/btnResetTimer"
+            app:layout_constraintEnd_toStartOf="@+id/btnPlusTimerLabelTextSize"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnResetTimer"
+            app:layout_constraintTop_toTopOf="@+id/btnResetTimer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlusTimerLabelTextSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_timer_label_size"
+            app:layout_constraintBottom_toBottomOf="@+id/btnMinusTimerLabelTextSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnMinusTimerLabelTextSize"
+            app:layout_constraintTop_toTopOf="@+id/btnMinusTimerLabelTextSize" />
+
+        <RadioGroup
+            android:id="@+id/rgTimerType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsTimerTextBold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxIsTimerTextBold"
+            app:layout_constraintTop_toTopOf="@+id/checkBoxIsTimerTextBold"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/timerTypeCountDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/count_down" />
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/timerTypeCountUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/count_up" />
+
+        </RadioGroup>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnStartTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            app:layout_constraintEnd_toStartOf="@+id/btnPauseTimer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnStopTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stop"
+            app:layout_constraintBottom_toBottomOf="@+id/btnStartTimer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnResumeTimer"
+            app:layout_constraintTop_toTopOf="@+id/btnStartTimer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnResumeTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resume"
+            app:layout_constraintBottom_toBottomOf="@+id/btnStartTimer"
+            app:layout_constraintEnd_toStartOf="@+id/btnStopTimer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnPauseTimer"
+            app:layout_constraintTop_toTopOf="@+id/btnStartTimer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnResetTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/reset"
+            app:layout_constraintEnd_toStartOf="@+id/btnMinusTimerLabelTextSize"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnStartTimer" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPauseTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause"
+            app:layout_constraintBottom_toBottomOf="@+id/btnStartTimer"
+            app:layout_constraintEnd_toStartOf="@+id/btnResumeTimer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnStartTimer"
+            app:layout_constraintTop_toTopOf="@+id/btnStartTimer" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentTimerStateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timer_state"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvCurrentTimerCompletedSecondsLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvCurrentTimerCompletedSecondsLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentTimerCompletedSecondsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/completed_seconds"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/tvCurrentTimerStateLabel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvCurrentTimerTotalSecondsLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvCurrentTimerTotalSecondsLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentTimerTotalSecondsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/total_seconds"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/tvCurrentTimerCompletedSecondsLabel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtTime" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentTimerCompletedSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/placeholder_time"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@+id/tvCurrentTimerCompletedSecondsLabel"
+            app:layout_constraintStart_toStartOf="@+id/tvCurrentTimerCompletedSecondsLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvCurrentTimerTotalSeconds" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentTimerTotalSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/placeholder_time"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvCurrentTimerTotalSecondsLabel"
+            app:layout_constraintStart_toStartOf="@+id/tvCurrentTimerTotalSecondsLabel"
+            app:layout_constraintTop_toBottomOf="@+id/tvCurrentTimerTotalSecondsLabel" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCurrentTimerState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timer_state"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@+id/tvCurrentTimerStateLabel"
+            app:layout_constraintStart_toStartOf="@+id/tvCurrentTimerStateLabel"
+            app:layout_constraintTop_toTopOf="@+id/tvCurrentTimerCompletedSeconds" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnInitTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/init_timer"
+            app:layout_constraintBottom_toBottomOf="@+id/edtTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/edtTime"
+            app:layout_constraintTop_toTopOf="@+id/edtTime" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
