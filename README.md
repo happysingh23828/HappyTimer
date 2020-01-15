@@ -376,7 +376,7 @@ class NormalCountDownActivity : AppCompatActivity() {
 
 
 
-
+## If this project helps you in anyway, show your love :heart: by putting a :star: on this project :v:
 
 ## Donation
 If this project help you reduce time to develop, you can give me a cup of coffee :) 
