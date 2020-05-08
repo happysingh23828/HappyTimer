@@ -28,7 +28,7 @@ Add this to your module's `build.gradle` file (make sure the version matches the
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.happysingh23828:HappyTimer:1.0.0'
+	implementation 'com.github.happysingh23828:HappyTimer:1.0.1'
 }
 ```
 

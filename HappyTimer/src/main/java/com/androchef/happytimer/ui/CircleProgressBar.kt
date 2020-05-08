@@ -88,7 +88,7 @@ class CircleProgressBar(
             progressFlow = ProgressFlow.values()[
                     typedArray.getInt(
                         R.styleable.CircleProgressBar_progress_flow,
-                        0
+                        1
                     )]
             
             initialLayout()
