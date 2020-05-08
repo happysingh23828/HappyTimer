@@ -10,6 +10,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.DecelerateInterpolator
+import com.androchef.happytimer.R
 
 class CircleProgressBar(
     context: Context,
@@ -25,9 +26,9 @@ class CircleProgressBar(
 
     private var progress = 0f
 
-    private var min = 0
+    private var minProgress = 0
 
-    private var max = 100
+    private var maxProgress = 100
 
     private var colorForGroundProgress = Color.DKGRAY
 
@@ -40,6 +41,69 @@ class CircleProgressBar(
     private var foregroundPaint: Paint? = null
 
     private var progressFlow: ProgressFlow = ProgressFlow.RIGHT_LEFT
+
+
+    init {
+        init(context, attrs)
+    }
+
+    init {
+        val typedArray = context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.CircleProgressBar,
+            0, 0
+        )
+
+        try {
+            colorForGroundProgress = typedArray.getColor(
+                R.styleable.CircleProgressBar_foreground_color,
+                colorForGroundProgress
+            )
+
+            colorBackgroundProgress = typedArray.getColor(
+                R.styleable.CircleProgressBar_background_color,
+                colorBackgroundProgress ?: adjustAlpha(colorForGroundProgress, 0.3f)
+            )
+
+            strokeWidthForGroundProgress = typedArray.getDimension(
+                R.styleable.CircleProgressBar_foreground_thickness,
+                strokeWidthForGroundProgress
+            ).dpToPx()
+
+            strokeWidthBackgroundProgress = typedArray.getDimension(
+                R.styleable.CircleProgressBar_background_thickness,
+                strokeWidthBackgroundProgress
+            ).dpToPx()
+
+            maxProgress = typedArray.getInt(
+                R.styleable.CircleProgressBar_max_progress,
+                maxProgress
+            )
+
+            progress = typedArray.getFloat(
+                R.styleable.CircleProgressBar_default_progress,
+                progress
+            )
+
+            progressFlow = ProgressFlow.values()[
+                    typedArray.getInt(
+                        R.styleable.CircleProgressBar_progress_flow,
+                        0
+                    )]
+            
+            initialLayout()
+        } finally {
+            typedArray.recycle()
+        }
+    }
+
+    private fun initialLayout() {
+        setProgressFlow(progressFlow)
+        setColor(colorForGroundProgress, colorBackgroundProgress)
+        setStrokeWidth(strokeWidthForGroundProgress, strokeWidthBackgroundProgress)
+        setMax(maxProgress)
+        setProgressWithAnimation(progress)
+    }
 
     fun setStrokeWidth(strokeWidthForeground: Float, strokeWidthBackground: Float) {
         this.strokeWidthForGroundProgress = strokeWidthForeground
@@ -60,12 +124,12 @@ class CircleProgressBar(
     }
 
     fun setMin(min: Int) {
-        this.min = min
+        this.minProgress = min
         invalidate()
     }
 
     fun setMax(max: Int) {
-        this.max = max
+        this.maxProgress = max
         invalidate()
     }
 
@@ -171,13 +235,9 @@ class CircleProgressBar(
 
     private fun getAngleForProgressFlow(): Float {
         return when (progressFlow) {
-            ProgressFlow.LEFT_RIGHT -> 360 * progress / max
-            ProgressFlow.RIGHT_LEFT -> 360 * progress / max
+            ProgressFlow.LEFT_RIGHT -> -360 * progress / maxProgress
+            ProgressFlow.RIGHT_LEFT -> 360 * progress / maxProgress
         }
-    }
-
-    init {
-        init(context, attrs)
     }
 
     enum class ProgressFlow {
