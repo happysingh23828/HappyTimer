@@ -235,7 +235,7 @@ class CircleProgressBar(
 
     private fun getAngleForProgressFlow(): Float {
         return when (progressFlow) {
-            ProgressFlow.LEFT_RIGHT -> 360 * progress / maxProgress
+            ProgressFlow.LEFT_RIGHT -> -360 * progress / maxProgress
             ProgressFlow.RIGHT_LEFT -> 360 * progress / maxProgress
         }
     }
