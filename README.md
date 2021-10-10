@@ -391,12 +391,11 @@ Please fork this repository and contribute back using
 Any contributions, large or small, major features, bug fixes, are welcomed and appreciated
 but will be thoroughly reviewed .
 
-### Contact - Let's become friend
-- [Androchef Blog](https://androchef.com/)
-- [Androchef Youtube](https://www.youtube.com/channel/UCILhpbLSFkGzsiCYAeR30DA)
+### - Contact - Let's become friend
+- [Blog](http://happysingh.dev/)
+- [Youtube](https://www.youtube.com/channel/UCILhpbLSFkGzsiCYAeR30DA)
 - [Github](https://github.com/happysingh23828)
 - [Linkedin](https://www.linkedin.com/in/happpysingh23828/)
-
 
 ## License
 
